@@ -195,7 +195,6 @@
     </module>
 
     <!-- white space consistency -->
-    </module>
     <module name="NoWhitespaceBefore">
       <property name="tokens"
                value="COMMA, SEMI, POST_INC, POST_DEC, DOT,
