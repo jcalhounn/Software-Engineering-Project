@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/taylorpitman/Downloads/mockitoJars/byte-buddy-1.14.11.jar",
+        "/Users/taylorpitman/Downloads/mockitoJars/byte-buddy-agent-1.14.11.jar",
+        "/Users/taylorpitman/Downloads/mockitoJars/mockito-core-5.10.0.jar",
+        "/Users/taylorpitman/Downloads/mockitoJars/objenesis-3.3.jar"
+    ]
+}
