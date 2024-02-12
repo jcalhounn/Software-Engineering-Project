@@ -7,16 +7,23 @@ public class ComputationCoordinatorTest {
 
     @Test
     public void ComputationTest() {
+        ComputeRequest mockRequest = Mockito.mock(ComputeRequest.class);
+
+        ComputationCoordinator mockInterface = Mockito.mock(ComputationCoordinator.class);
+        when(mockInterface.compute(any(ComputeRequest.class))).thenReturn(ComputeResult.SUCCESS);
 
         //process compute request
-        //input config
-        //check if valid
-        //output config
-        //check if valid
-        //delimiter config
-        //check if valid, otherwise use default
-        //compute
+        User testUser = new User();
 
+        ComputeResult mockResult = testUser.compute(mockRequest);
+        
+        //check if valid
+        if(mockResult == mockResult.SUCCESS){
+            //print results ??
+        }   
+        else{
+            //error , try again 
+        }     
 
     }
 
