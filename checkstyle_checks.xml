@@ -203,15 +203,15 @@
       <property name="allowLineBreaks" value="true"/>
     </module>
           
-    <!-- helps with consistent indentation -->
+    <!-- helps with consistent indentation
     <module name="Indentation">
-      <property name="basicOffset" value="4"/>
+  <property name="basicOffset" value="4"/>
       <property name="braceAdjustment" value="2"/>
       <property name="caseIndent" value="4"/>
       <property name="throwsIndent" value="4"/>
       <property name="lineWrappingIndentation" value="4"/>
       <property name="arrayInitIndent" value="4"/>
-    </module>
+    </module> -->
 
      <module name="NeedBraces">
       <property name="tokens"

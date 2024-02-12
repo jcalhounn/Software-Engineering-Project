@@ -1,4 +1,4 @@
-package src;
+
 
 public interface ComputeResult {
 	static ComputeResult SUCCESS = () -> ComputeResultStatus.SUCCESS;
