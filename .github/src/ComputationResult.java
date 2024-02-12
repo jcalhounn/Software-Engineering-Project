@@ -1,6 +1,7 @@
 
 
 public interface ComputationResult {
+
 	static ComputationResult SUCCESS = () -> ComputationResultStatus.SUCCESS;
 	static ComputationResult FAILURE = () -> ComputationResultStatus.FAILURE;
 
@@ -10,4 +11,5 @@ public interface ComputationResult {
 		SUCCESS,
 		FAILURE;
 	}
+
 }
