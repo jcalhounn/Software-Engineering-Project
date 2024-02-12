@@ -9,7 +9,7 @@ import static org.mockito.Mockito.any;
 public class ComputeEngineTest {
 
     @Test
-    public void ComputeEngineAPITest() {
+    public void computeEngineAPITest() {
 
         ComputeEngine mockInterface = Mockito.mock(ComputeEngine.class);
         when(mockInterface.compute(any(Integer.class))).thenReturn(ComputationResult.SUCCESS);

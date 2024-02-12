@@ -6,7 +6,7 @@ import static org.mockito.Mockito.any;
 public class ComputationCoordinatorTest {
 
     @Test
-    public void ComputationTest() {
+    public void computationTest() {
         ComputeRequest mockRequest = Mockito.mock(ComputeRequest.class);
 
         ComputationCoordinator mockInterface = Mockito.mock(ComputationCoordinator.class);
