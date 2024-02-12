@@ -7,8 +7,7 @@ import org.junit.Test;
 public class ComputeEngineIntegrationTest {
 
     @Test
-    public void computeEngineIntegrationTest()
-    {
+    public void computeEngineIntegrationTest(){
         List<Integer> list = Arrays.asList(1,2,3);
         List<String> output = null;
 
