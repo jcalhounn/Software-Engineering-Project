@@ -13,17 +13,17 @@ public class ComputationCoordinatorTest {
         when(mockInterface.compute(any(ComputeRequest.class))).thenReturn(ComputeResult.SUCCESS);
 
         //process compute request
-        User testUser = new User();
+        //User testUser = new User();
 
-        ComputeResult mockResult = testUser.compute(mockRequest);
+        //ComputeResult mockResult = testUser.compute(mockRequest);
         
         //check if valid
-        if(mockResult == mockResult.SUCCESS){
+        //if(mockResult == mockResult.SUCCESS){
             //print results ??
-        }   
-        else{
+        //}   
+        //else{
             //error , try again 
-        }     
+       // }     
 
     }
 

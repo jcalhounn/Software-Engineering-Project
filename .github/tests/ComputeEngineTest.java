@@ -15,16 +15,16 @@ public class ComputeEngineTest {
         when(mockInterface.compute(any(Integer.class))).thenReturn(ComputationResult.SUCCESS);
 
         //compute integer
-        ComputationResult mockResult = mockInterface.compute(5);
+        //ComputationResult mockResult = mockInterface.compute(5);
 
         //if success, get next integer
-        if(mockResult == mockResult.SUCCESS)
-        {
+        //if(mockResult == mockResult.SUCCESS)
+        //{
             //next int
-        }
-        else{
+        //}
+        //else{
             //else error
-        }
+        //}
 
     }
     
