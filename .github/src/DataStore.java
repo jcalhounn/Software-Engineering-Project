@@ -26,8 +26,7 @@
  */
 
 
-public interface DataStore 
-{
+public interface DataStore {
 	DataStoreReadResult read(InputConfig input);
 	WriteResult writeSingleResult(OutputConfig output, String result); 
 }
