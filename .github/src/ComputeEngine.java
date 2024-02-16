@@ -24,7 +24,6 @@
  * comp1 will have instance objects of the "DataStore" API that the "StorageSystem" is required to handle methods from
  */
 
-public interface ComputeEngine 
-{
+public interface ComputeEngine {
 	public ComputationResult compute(int value);
 }
