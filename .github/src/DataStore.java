@@ -29,5 +29,5 @@
 public interface DataStore 
 {
 	DataStoreReadResult read(InputConfig input);
-	WriteResult appendSingleResult(OutputConfig output, String result); 
+	WriteResult writeSingleResult(OutputConfig output, String result); 
 }

@@ -1,4 +1,8 @@
-public class Engine implements ComputeEngine {
+/*
+ * represented by "comp #2" in system diagram
+ */
+
+public class EngineCompute implements ComputeEngine {
 
     //instance variables 
     DataStore dataStoreAPI;

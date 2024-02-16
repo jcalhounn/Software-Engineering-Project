@@ -14,7 +14,7 @@ public class DataStoreTest {
 
         DataStore mockInterface = Mockito.mock(DataStore.class);
         when(mockInterface.read(any(InputConfig.class))).thenReturn(DataStoreReadResult.SUCCESS);
-        when(mockInterface.appendSingleResult(any(OutputConfig.class), null)).thenReturn(WriteResult.SUCCESS);
+        when(mockInterface.writeSingleResult(any(OutputConfig.class), null)).thenReturn(WriteResult.SUCCESS);
 
         //read to first input
         //while there are more inputs
