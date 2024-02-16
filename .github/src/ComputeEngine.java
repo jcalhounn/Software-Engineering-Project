@@ -17,6 +17,17 @@
  * For the input, there's also nothing wrong with using a wrapper around the int, but since we're given
  * from the system specification that it will always be an int, it's fine to just use that as well.
  */
-public interface ComputeEngine {
-	ComputationResult compute(int value);
+
+/* Contains comp1 and comp2 classes 
+ * comp1 will method request for data from the DataStorage and manages where the data will go
+ * comp2 will perform the functional computations that are required to be handled by the "ComputationCoordinator" API
+ * comp1 will have instance objects of the "DataStore" API that the "StorageSystem" is required to handle methods from
+ */
+
+public class ComputeEngine implements ComputationCoordinator
+{
+	public ComputationResult compute(int value)
+	{
+		//must be able to handle the compute task from ComputationCoordinator
+	}
 }

@@ -10,6 +10,17 @@
  * user provide each piece with a separate method (this is similar to the Builder pattern we talked about
  * for immutable objects).
  */
-public interface ComputationCoordinator {
+
+ /* Acts as a task list that "ComputeEngine" must be able to handle
+  * 
+  * User / website will use the methods in this list by referencing the name of this class and calling the method
+  * 
+  *
+  */
+public interface ComputationCoordinator 
+{
 	ComputeResult compute(ComputeRequest request);
+
+
+	
 }

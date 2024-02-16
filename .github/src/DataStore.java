@@ -18,7 +18,16 @@
  * boundary, we can't rely on Java Exceptions to propagate across it, so the error values must
  * be handled with the return type
  */
-public interface DataStore {
+
+/*	StorageSystem will be required to handle the methods that are
+ * contained in this interface
+ * 
+ * 
+ */
+
+
+public interface DataStore 
+{
 	DataStoreReadResult read(InputConfig input);
 	WriteResult appendSingleResult(OutputConfig output, String result); 
 }
