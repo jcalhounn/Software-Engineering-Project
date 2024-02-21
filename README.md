@@ -1,6 +1,7 @@
 # Software-Engineering-Project
 
-![BlockDiagram](https://github.com/jcalhounn/Software-Engineering-Project/blob/main/BlockDiagram.jpg?raw=true)
+![SystemDiagram](https://github.com/jcalhounn/Software-Engineering-Project/blob/readme-update/SystemDiagram.jpg)
+
 
 Project Function #1:
-  Convert an assortment of input numbers into HEXIDECIMAL and output to specified location by the User.
+  Takes in an assortment of numbers, finds the GCF, and converts the numbers and GCF to hexadecimal.
