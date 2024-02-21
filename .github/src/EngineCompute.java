@@ -2,10 +2,10 @@
  * represented by "comp #2" in system diagram
  */
 
-public class EngineCompute implements ComputeEngine {
+public class EngineCompute implements EngineAPI {
 
     //instance variables 
-    DataStore dataStoreAPI;
+    DataAPI dataStoreAPI;
     ComputationCoordinator computationAPI;
 
     @Override

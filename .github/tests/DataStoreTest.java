@@ -12,8 +12,8 @@ public class DataStoreTest {
     @Test
     public void dataStoreAPITest() {
 
-        DataStore mockInterface = Mockito.mock(DataStore.class);
-        when(mockInterface.read(any(InputConfig.class))).thenReturn(DataStoreReadResult.SUCCESS);
+        DataAPI mockInterface = Mockito.mock(DataAPI.class);
+        when(mockInterface.read(any(InputConfig.class))).thenReturn(DataReadResult.SUCCESS);
         when(mockInterface.writeSingleResult(any(OutputConfig.class), null)).thenReturn(WriteResult.SUCCESS);
 
         //read to first input

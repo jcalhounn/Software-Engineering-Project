@@ -1,7 +1,7 @@
 //"implements ComputationCoordinator" was removed 
 // since its supposed to be implemented in the ComputeEngine class
 
-public class User{
+public class User {
     ComputationCoordinator coordinator; 
 
     /*commented out because we dont need this anymore */

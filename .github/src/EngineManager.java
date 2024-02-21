@@ -3,8 +3,8 @@
  */
 
 public class EngineManager implements ComputationCoordinator {
-    DataStore dataStoreAPI;
-    ComputeEngine computeEngineAPI;
+    DataAPI dataStoreAPI;
+    EngineAPI computeEngineAPI;
 
     @Override
     public ComputeResult compute(ComputeRequest request) {

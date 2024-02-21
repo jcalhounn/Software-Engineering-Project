@@ -11,7 +11,7 @@ public class ComputeEngineTest {
     @Test
     public void computeEngineAPITest() {
 
-        ComputeEngine mockInterface = Mockito.mock(ComputeEngine.class);
+        EngineAPI mockInterface = Mockito.mock(EngineAPI.class);
         when(mockInterface.compute(any(Integer.class))).thenReturn(ComputationResult.SUCCESS);
 
         //compute integer

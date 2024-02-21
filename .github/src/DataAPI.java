@@ -26,7 +26,7 @@
  */
 
 
-public interface DataStore {
-	DataStoreReadResult read(InputConfig input);
+public interface DataAPI {
+	DataReadResult read(InputConfig input);
 	WriteResult writeSingleResult(OutputConfig output, String result); 
 }

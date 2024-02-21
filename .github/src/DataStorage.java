@@ -1,7 +1,7 @@
-public class DataStorage implements DataStore {
+public class DataStorage implements DataAPI {
 
     @Override
-    public DataStoreReadResult read(InputConfig input) {
+    public DataReadResult read(InputConfig input) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'read'");
     }
