@@ -6,12 +6,12 @@ import org.junit.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.any;
 
-public class ComputeEngineTest {
+public class EngineAPITest {
 
     @Test
     public void computeEngineAPITest() {
 
-        ComputeEngine mockInterface = Mockito.mock(ComputeEngine.class);
+        EngineAPI mockInterface = Mockito.mock(EngineAPI.class);
         when(mockInterface.compute(any(Integer.class))).thenReturn(ComputationResult.SUCCESS);
 
         //compute integer

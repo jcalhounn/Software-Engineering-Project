@@ -1,15 +1,17 @@
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 import org.junit.Test;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.any;
 
-public class ComputationCoordinatorTest {
+public class  ComputeAPITest {
 
     @Test
     public void computationTest() {
         ComputeRequest mockRequest = Mockito.mock(ComputeRequest.class);
 
-        ComputationCoordinator mockInterface = Mockito.mock(ComputationCoordinator.class);
+         ComputeAPI mockInterface = Mockito.mock( ComputeAPI.class);
         when(mockInterface.compute(any(ComputeRequest.class))).thenReturn(ComputeResult.SUCCESS);
 
         //process compute request

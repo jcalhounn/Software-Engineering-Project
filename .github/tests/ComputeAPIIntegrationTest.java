@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class ComputeEngineIntegrationTest {
+public class ComputeAPIIntegrationTest {
 
     @Test
     public void computeEngineIntegrationTest(){
