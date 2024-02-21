@@ -1,6 +1,6 @@
 # Software-Engineering-Project
 
-![SystemDiagram](https://github.com/jcalhounn/Software-Engineering-Project/blob/readme-update/SystemDiagram.jpg)
+![SystemDiagram](https://github.com/jcalhounn/Software-Engineering-Project/blob/main/SystemDiagram.jpg)
 
 
 Project Function #1:
