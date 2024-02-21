@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.any;
 
-public class ComputeEngineTest {
+public class EngineAPITest {
 
     @Test
     public void computeEngineAPITest() {

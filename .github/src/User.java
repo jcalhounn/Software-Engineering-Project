@@ -2,7 +2,7 @@
 // since its supposed to be implemented in the ComputeEngine class
 
 public class User {
-    ComputationCoordinator coordinator; 
+    ComputeAPI coordinator; 
 
     /*commented out because we dont need this anymore */
     // @Override

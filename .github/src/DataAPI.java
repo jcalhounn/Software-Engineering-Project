@@ -28,5 +28,5 @@
 
 public interface DataAPI {
 	DataReadResult read(InputConfig input);
-	WriteResult writeSingleResult(OutputConfig output, String result); 
+	DataWriteResult writeSingleResult(OutputConfig output, String result); 
 }

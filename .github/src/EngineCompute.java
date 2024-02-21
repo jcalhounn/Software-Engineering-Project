@@ -6,7 +6,7 @@ public class EngineCompute implements EngineAPI {
 
     //instance variables 
     DataAPI dataStoreAPI;
-    ComputationCoordinator computationAPI;
+    ComputeAPI computationAPI;
 
     @Override
     public ComputationResult compute(int value) {

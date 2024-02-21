@@ -7,7 +7,7 @@ public class DataStorage implements DataAPI {
     }
 
     @Override
-    public WriteResult writeSingleResult(OutputConfig output, String result) {
+    public DataWriteResult writeSingleResult(OutputConfig output, String result) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'appendSingleResult'");
     }

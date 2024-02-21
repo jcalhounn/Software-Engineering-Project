@@ -2,7 +2,7 @@
  * represented by "Comp #1" in system diagram
  */
 
-public class EngineManager implements ComputationCoordinator {
+public class EngineManager implements ComputeAPI {
     DataAPI dataStoreAPI;
     EngineAPI computeEngineAPI;
 

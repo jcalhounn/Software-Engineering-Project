@@ -23,7 +23,7 @@
  * 
  *
  */
-public interface ComputationCoordinator {
+public interface ComputeAPI {
   ComputeResult compute(ComputeRequest request);
 
 }

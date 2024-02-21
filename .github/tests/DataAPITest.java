@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.any;
 
-public class DataStoreTest {
+public class DataAPITest {
     
     @Test
     public void dataStoreAPITest() {
 
         DataAPI mockInterface = Mockito.mock(DataAPI.class);
         when(mockInterface.read(any(InputConfig.class))).thenReturn(DataReadResult.SUCCESS);
-        when(mockInterface.writeSingleResult(any(OutputConfig.class), null)).thenReturn(WriteResult.SUCCESS);
+        when(mockInterface.writeSingleResult(any(OutputConfig.class), null)).thenReturn(DataWriteResult.SUCCESS);
 
         //read to first input
         //while there are more inputs
