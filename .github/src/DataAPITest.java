@@ -1,13 +1,13 @@
-public class DataStoreTest implements DataStore  {
+public class DataAPITest implements DataAPI  {
 
     @Override
-    public DataStoreReadResult read(InputConfig input) {
+    public DataReadResult read(InputConfig input) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'read'");
     }
 
     @Override
-    public WriteResult appendSingleResult(OutputConfig output, String result) {
+    public DataWriteResult writeSingleResult(OutputConfig output, String result) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'appendSingleResult'");
     }
