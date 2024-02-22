@@ -14,7 +14,7 @@ public class EngineAPIIntegrationTest {
     public void testComputeWorkflow(){
 
         //API 3
-        EngineAPI engine = new EngineAPIImpl();
+        EngineAPI engine = new EngineCompute();
 
         //API 2   ask about datatype "DataAPITestTemp" at beginning rather than DataAPI
         DataAPITestImp testDataAPI = new DataAPITestImp();

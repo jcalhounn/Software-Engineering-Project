@@ -15,7 +15,7 @@ public class EngineAPISmokeTest {
         
         EngineComputeRequest request = Mockito.mock(EngineComputeRequest.class);
         
-        EngineAPI engineAPI = new EngineAPIImpl();
+        EngineAPI engineAPI = new EngineCompute();
         EngineComputeResult result =  engineAPI.compute(request);
         Assert.assertEquals(result.getStatus(), EngineComputeResult.EngineComputeResultStatus.SUCCESS);
 
