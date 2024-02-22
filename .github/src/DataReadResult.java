@@ -7,6 +7,7 @@ public interface DataReadResult {
 
 	DataResult getStatus();
 	
+    //CHANGE NAME TO READRESULT PLEASE
 	public static enum DataResult {
 		SUCCESS,
 		FAILURE;
