@@ -6,8 +6,7 @@ public class ComputeAPIImpl implements ComputeAPI{
     DataAPI dataAPI;
     EngineAPI engineAPI;
 
-    ComputeAPIImpl(DataAPI dataAPI, EngineAPI engineAPI)
-    {
+    ComputeAPIImpl(DataAPI dataAPI, EngineAPI engineAPI) {
         this.dataAPI = dataAPI;
         this.engineAPI = engineAPI;
     }
