@@ -24,7 +24,7 @@
  * comp1 will have instance objects of the "DataStore" API that the "StorageSystem" is required to handle methods from
  */
 
- //interface between componenet 1 (EngineManager) & component 2 (EngineCompute)
+//interface between componenet 1 (EngineManager) & component 2 (EngineCompute)
 public interface EngineAPI {
-	public ComputationResult compute(int value);
+	public EngineComputeResult compute(EngineComputeRequest request);
 }
