@@ -20,7 +20,7 @@ public class DataAPISmokeTest {
         
         DataReadResult readResult = dataAPI.read(input);
 
-        Assert.assertEquals(readResult.getStatus(),DataReadResult.DataResult.SUCCESS);
+        Assert.assertEquals(readResult.getStatus(),DataReadResult.ReadResult.SUCCESS);
 
     }
 

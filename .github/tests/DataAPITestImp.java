@@ -3,9 +3,13 @@
 *
 */
 
+import java.util.List;
+
 import org.mockito.Mockito;
 
 public class DataAPITestImp implements DataAPI {
+
+    private List<Integer> userInputData;
 
     /*ASK PROFESSOR ABOUT THIS METHOD LOLOLOL*/
     @Override
@@ -16,10 +20,15 @@ public class DataAPITestImp implements DataAPI {
 
         //im not sure how we would return this as she does in her test sample because we 
         // are using a wrapper class. 
-        ((InputConfigTestImpl)input).getInputs();
+        userInputData = ((InputConfigTestImpl)input).getInputs();
 
         //assuming the data transfer is successful
-        return () -> DataReadResult.DataResult.SUCCESS;
+        return () -> DataReadResult.ReadResult.SUCCESS;
+    }
+
+    public List<Integer> getData() {
+
+        return userInputData;// copied from dataStorage
     }
 
     @Override

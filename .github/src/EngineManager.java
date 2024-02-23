@@ -22,13 +22,18 @@ public class EngineManager implements ComputeAPI {
 
     DataAPI dataStoreAPI;
     EngineAPI computeEngineAPI;
-
+    EngineComputeRequest engineRequest;
+    /* j commented out 2/22 these instance variables only need to access the method calls in their
+    respective interfaces to transfer arguments to correct files
+    
     public EngineManager(DataStorage dataStorage, EngineCompute engineCompute ) {
 
         dataStoreAPI =  dataStorage;
         computeEngineAPI = engineCompute;
 
     }
+    */
+
 
     /*Receive requests from the user to start the computation (the
     * method signature for this will come from your API), and return a
@@ -39,17 +44,13 @@ public class EngineManager implements ComputeAPI {
         
         //request DataAPI object to read ints
         request = new ComputeRequestTestImpl();
-        InputConfig inputConfig = request.getInputConfig();
-        DataReadResult readRequest = dataStoreAPI.read(inputConfig);
-
-        if(readRequest.equals(DataReadResult.SUCCESS))
-        {
-            
-            
-            //EngineComputeRequest computeRequest = new EngineComputeRequestImpl(list);
-
+        //readRequest will either become a SUCCESS or FAILURE after instantiation
+        // this will determine if the EngineManager can go ahead with the compute call
+        DataReadResult readRequest = dataStoreAPI.read(request.getInputConfig());
+        
+           /* //EngineComputeRequest computeRequest = new EngineComputeRequestImpl(list);
             //pass the ints to the EngineAPI object
-            EngineComputeResult computeResult = computeEngineAPI.compute(list); //THIS is where I am stuck on what to do next
+            /*EngineComputeResult computeResult = computeEngineAPI.compute(list); //THIS is where I am stuck on what to do next
 
                 if(computeResult.equals(EngineComputeResult.SUCCESS))
                 {
@@ -62,12 +63,36 @@ public class EngineManager implements ComputeAPI {
                         return ComputeResult.SUCCESS;
                     }
                 }
+                
+            //DataStorage read method was a success!
+            //Here, we know that the DataStorage can read the data. 
+            //I believe that there should be another method inside of the DataAPI interface that DataStorage implements, 
+            //that has a return type of List<Integer> or what ever we change it to in the future.
+            //
+            //Using this List<Integer> return type, we use our EngineAPI instance variable to call the method in EngineCompute, passing the arguments List<Integer>,
+            //and from there, the EngineCompute will handle that data. 
+            //
+            //The EngineManager is just a middleman to pass the data into the EngineCompute constructor
+            */
+         
+        //if the data read was a success, call the EngineCompute method "compute()"
+        if(readRequest.equals(DataReadResult.SUCCESS)) {
 
+            engineRequest.setDecInputs(dataStoreAPI.getData());
+            //if(computeEngineAPI.compute(dataStoreAPI.getData()).equals(EngineComputeResult.SUCCESS)){
+            if(computeEngineAPI.compute(engineRequest).equals(EngineComputeResult.SUCCESS)){
+                // ^^ recieves an EngineComputeResult SUCCESS or FAILURE ^^
+                request.getOutputConfig().setOutput(engineRequest.getHexOutput());
+            return ComputeResult.SUCCESS;
+            }
+            else{//FAILURE ComputeResult bc EngineComputeRequest failed 
+                return ComputeResult.FAILURE;
+            }
         }
-
-        //send back failed ComputeResult 
+        else{
+            //FAILURE ComputeResult bc readRequest failed
         return ComputeResult.FAILURE;
-
+        }
     }
     
 }

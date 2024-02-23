@@ -16,41 +16,60 @@ public class EngineCompute implements EngineAPI {
     private int decGCD;
     private String hexGCD;
     private List<String> hexInputs;
+    private int comparable;
 
-    public EngineCompute() {
+    //public EngineCompute() {
 
-    }
+    //}
 
     //not sure if this is needed since our integration test does not 
     //have anything in constructor. but idk how else we would get the
     //inputs to compute
 
-    public EngineCompute(List<Integer> decInputs) {
-        this.decInputs = decInputs;
+    // j commented out 2/22
+
+    public void setDecInputs(List<Integer> inDecInputs) {
+        this.decInputs = inDecInputs;
     }
 
+    public List<String> getHexOutput(){
+        
+        return getHexInputs();
+    }
+    
     @Override
     public EngineComputeResult compute(EngineComputeRequest request) {
-        
+    //public EngineComputeResult compute(List<Integer> request) {
         //not sure if this is a valid comparison since its giving me a warning
-        if(request.getStatus().equals(EngineComputeRequest.SUCCESS)) {
+        //j- This comparison is looking at two slightly different enum types. One of type EngineComputeRequest, and one of EngineComputeRequestStatus
+        //Fix - Before
+        //request.getStatus().equals(EngineComputeRequest.SUCCESS
+        //after
+        //this if statement isn't relevant anymore
+        //if(request.equals(EngineComputeResult.SUCCESS)) { 
+            // request is an EngineComputeRequest type, this has since been changed to a list of methods instead of status interface 
+                this.hexInputs = toHex(this.decInputs);
+                //do computation
+                this.decGCD = getGCD(this.decInputs);
+                this.hexGCD = toHex(this.decGCD);
+                if(this.hexInputs==null||this.decGCD==comparable||this.hexGCD==null){
 
-            hexInputs = toHex(decInputs);
-
-            //do computation
-            decGCD = getGCD(decInputs);
-            hexGCD = toHex(decGCD);
-
+                    return EngineComputeResult.FAILURE;
+                }
+                return EngineComputeResult.SUCCESS;
             //at this point i am confused on whether i should be sending back
             //a message OR the organized output. So I added getmethod for everything for now
-            return EngineComputeResult.SUCCESS;
-        }
-        else {
 
-            return EngineComputeResult.FAILURE;
-        }
+            // I believe having the get method is a good idea, and should only return values
+            // if the compute is a success 
+            // I believe the if statement at the top of this block should compare if the computation was completed
+            // if true, change local data and return success
+            // else, return failure and dont change local data 
+
+            
 
     }
+
 
     //finds greatest common divisor of a list of integers
     private int getGCD(List<Integer> decInputs) {
@@ -84,7 +103,6 @@ public class EngineCompute implements EngineAPI {
         for(int i = 0; i < decInputs.size() - 1; i++) {
 
             hexInputs.add(toHex(decInputs.get(i)));
-
         }
 
         return hexInputs;

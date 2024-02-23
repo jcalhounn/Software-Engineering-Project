@@ -2,14 +2,15 @@
 public interface DataReadResult {
 
 
-	static DataReadResult SUCCESS = () -> DataResult.SUCCESS;
-	static DataReadResult FAILURE = () -> DataResult.FAILURE;
+	static DataReadResult SUCCESS = () -> ReadResult.SUCCESS;
+	static DataReadResult FAILURE = () -> ReadResult.FAILURE;
 
 
-	DataResult getStatus();
+	ReadResult getStatus();
 	
     //CHANGE NAME TO READRESULT PLEASE
-	public static enum DataResult {
+	//Done
+	public static enum ReadResult {
 		SUCCESS,
 		FAILURE;
 	}
