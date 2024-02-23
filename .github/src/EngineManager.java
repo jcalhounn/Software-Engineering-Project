@@ -83,15 +83,13 @@ public class EngineManager implements ComputeAPI {
             if(computeEngineAPI.compute(engineRequest).equals(EngineComputeResult.SUCCESS)){
                 // ^^ recieves an EngineComputeResult SUCCESS or FAILURE ^^
                 request.getOutputConfig().setOutput(engineRequest.getHexOutput());
-            return ComputeResult.SUCCESS;
-            }
-            else{//FAILURE ComputeResult bc EngineComputeRequest failed 
+                return ComputeResult.SUCCESS;
+            } else{//FAILURE ComputeResult bc EngineComputeRequest failed 
                 return ComputeResult.FAILURE;
             }
-        }
-        else{
+        }else{
             //FAILURE ComputeResult bc readRequest failed
-        return ComputeResult.FAILURE;
+            return ComputeResult.FAILURE;
         }
     }
     
