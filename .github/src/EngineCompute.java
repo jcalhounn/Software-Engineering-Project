@@ -112,14 +112,12 @@ public class EngineCompute implements EngineAPI {
         StringBuilder hexNum = new StringBuilder();
 
         //incase number is 0 (even though it should be only positive numbers if all exceptions are implemented correctly?)
-        if(num == 0)
-        {
+        if(num == 0){
             hexNum.insert(0, 0);
-        }
-        else {
+        }else{
 
-            while(num > 0)
-            {
+            while(num > 0){
+
                 int remainder = num % 16;
                 char hexDigit = getHexDigit(remainder);
                 hexNum.insert(0, hexDigit);
@@ -128,18 +126,16 @@ public class EngineCompute implements EngineAPI {
         }
 
         return hexNum.toString();
-
     }
 
     private char getHexDigit(int remainder) {
         
         char digit = '0';
 
-        if(remainder < 10)
-        {
+        if(remainder < 10){
+
             digit = (char) ('0' + remainder); //takes the character 0(ASCII) and adds the remainder to get the remainder ASCII value
-        }
-        else if(remainder >= 10) { //can only be betwen 10 & 15 since were dividing by 16
+        }else if(remainder >= 10){ //can only be betwen 10 & 15 since were dividing by 16
 
             digit = (char) ('A' + remainder - 10); //finds correct ASCII value
         }
