@@ -23,8 +23,17 @@ public class InputConfigTestImpl implements InputConfig {
     * actual program(not test code)) 
     *
     */
+
+    public void getInputConfig(){
+        
+    }
+
+
     public List<Integer> getInputs() {
         return inputs;
     }
     
+    
+
+
 }

@@ -2,14 +2,14 @@
 // since its supposed to be implemented in the ComputeEngine class
 
 public class User {
-    ComputeAPI coordinator; 
+    ComputeAPI coordinator;
+    ComputeRequest request;
 
-    /*commented out because we dont need this anymore */
-    // @Override
-    // public ComputeResult compute(ComputeRequest request)
-    // {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'compute'");
-    // }
+
+    //takes in the user's request 
+    public ComputeResult userCommunication(ComputeRequest request){
+        
+        return coordinator.compute(request);
+    }    
     
 }

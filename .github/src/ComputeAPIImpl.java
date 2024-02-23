@@ -14,7 +14,7 @@ public class ComputeAPIImpl implements ComputeAPI{
     @Override
     public ComputeResult compute(ComputeRequest request) {
         // TODO Auto-generated method stub
-        return ComputeResult.FAILURE;
+        return ComputeResult.SUCCESS;
     }
 
 }
