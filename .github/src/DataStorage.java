@@ -31,8 +31,7 @@ public class DataStorage implements DataAPI {
         if(result!=null){
             
             return DataWriteResult.SUCCESS;
-        }
-        else{
+        }else{
 
             return DataWriteResult.FAILURE;
         }
