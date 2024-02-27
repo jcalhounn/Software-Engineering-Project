@@ -29,4 +29,6 @@ public interface EngineAPI {
 	//public EngineComputeResult compute(EngineComputeRequest request);
 	public EngineComputeResult compute(EngineComputeRequest request);
 	public void setDecInputs(List<Integer> decInputs);
+	public List<String> getHexInputs();
+	public String getHexGCD();
 }

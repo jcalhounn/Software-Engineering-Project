@@ -17,5 +17,7 @@
         "c:\\Users\\taylor diane\\Desktop\\byte-buddy-agent-1.14.11.jar",
         "c:\\Users\\taylor diane\\Desktop\\mockito-core-5.10.0.jar",
         "c:\\Users\\taylor diane\\Desktop\\objenesis-3.3.jar"
-    ]
+    ],
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+    "java.debug.settings.onBuildFailureProceed": true
 }

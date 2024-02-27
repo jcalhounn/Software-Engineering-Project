@@ -10,6 +10,9 @@ public interface EngineComputeRequest {
 
 	public EngineComputeResult setDecInputs(List<Integer> data);
 	public List<String> getHexOutput();
+	public InputConfig getInputConfig();
+	public OutputConfig getOutputConfig();
+	
 	//DecimalComputation findDecGCD();
 	//HexidecimalComputation getHexGCD();
 	/*

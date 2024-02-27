@@ -42,6 +42,7 @@ public class DataAPIImpl implements DataAPI  {
         }
         */ /************ UNCOMMENT THE FILE READER IN THE FUTURE. It is commented out to simplify the implementation tests***********/
         userInputData.add(1);//TEMPORARY Population
+        
         //Something like this to check if the data read was successfull
         if(userInputData.isEmpty()) {
        

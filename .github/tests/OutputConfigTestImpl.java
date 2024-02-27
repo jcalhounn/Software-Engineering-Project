@@ -13,9 +13,10 @@ public class OutputConfigTestImpl implements OutputConfig {
     }
 
     @Override
-    public void setOutput(List<String> results){
+    public void setOutput(List<String> inputs, String gcd){
 
-        this.output = results;
+        inputs.add(gcd);
+        output = inputs; 
         
     }
 

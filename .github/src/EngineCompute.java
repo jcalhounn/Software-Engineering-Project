@@ -27,9 +27,26 @@ public class EngineCompute implements EngineAPI {
     //inputs to compute
 
     // j commented out 2/22
+    
+    //GETTER METHODS THAT WE MIGHT REMOVE LATER
+    public List<Integer> getDecInputs() {
+        return decInputs;
+    }
 
-    public void setDecInputs(List<Integer> inDecInputs) {
-        this.decInputs = inDecInputs;
+    public int getDecGCD() {
+        return decGCD;
+    }
+
+    public String getHexGCD() {
+        return hexGCD;
+    }
+
+    public List<String> getHexInputs() {
+        return hexInputs;
+    }
+    
+    public void setDecInputs(List<Integer> decInputs) {
+        this.decInputs = decInputs;
     }
 
     public List<String> getHexOutput(){
@@ -48,11 +65,11 @@ public class EngineCompute implements EngineAPI {
         //this if statement isn't relevant anymore
         //if(request.equals(EngineComputeResult.SUCCESS)) { 
             // request is an EngineComputeRequest type, this has since been changed to a list of methods instead of status interface 
-                this.hexInputs = toHex(this.decInputs);
+                hexInputs = toHex(decInputs);
                 //do computation
-                this.decGCD = getGCD(this.decInputs);
-                this.hexGCD = toHex(this.decGCD);
-                if(this.hexInputs==null||this.decGCD==comparable||this.hexGCD==null){
+                decGCD = getGCD(decInputs);
+                hexGCD = toHex(decGCD);
+                if(hexInputs==null||decGCD==comparable||this.hexGCD==null){
 
                     return EngineComputeResult.FAILURE;
                 }
@@ -100,11 +117,10 @@ public class EngineCompute implements EngineAPI {
 
         List<String> hexInputs = new ArrayList<>();
         
-        for(int i = 0; i < decInputs.size() - 1; i++) {
+        for(int i = 0; i < decInputs.size(); i++) {
 
             hexInputs.add(toHex(decInputs.get(i)));
         }
-
         return hexInputs;
     }
     private String toHex(int num) {
@@ -143,24 +159,5 @@ public class EngineCompute implements EngineAPI {
         return digit;
     }
 
-    //GETTER METHODS THAT WE MIGHT REMOVE LATER
-    public List<Integer> getDecInputs() {
-        return decInputs;
-    }
-
-    public int getDecGCD() {
-        return decGCD;
-    }
-
-    public String getHexGCD() {
-        return hexGCD;
-    }
-
-    public List<String> getHexInputs() {
-        return hexInputs;
-    }
-
-    
-    
     
 }

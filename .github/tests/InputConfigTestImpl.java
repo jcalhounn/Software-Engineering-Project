@@ -6,9 +6,9 @@ public class InputConfigTestImpl implements InputConfig {
 
     private final List<Integer> inputs = new ArrayList<>();
 
-    public InputConfigTestImpl(int... inputs) {
-        for(int i : inputs) {
-            this.inputs.add(i);
+    public InputConfigTestImpl(int... inputsArr) {
+        for(int i = 0; i < inputsArr.length; i++) {
+            inputs.add(inputsArr[i]);
         }
     }
 

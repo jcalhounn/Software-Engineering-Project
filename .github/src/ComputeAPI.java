@@ -25,5 +25,5 @@
  */
 public interface ComputeAPI {
   
-  ComputeResult compute(ComputeRequest request);
+  ComputeResult compute(EngineComputeRequest request);
 }

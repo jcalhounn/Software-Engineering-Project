@@ -1,20 +1,18 @@
 //decides how to model the arbitrarily-large number of integer inputs
-public interface DataReadResult {
 
+import java.util.List;
+
+public interface DataReadResult {
 
 	static DataReadResult SUCCESS = () -> ReadResult.SUCCESS;
 	static DataReadResult FAILURE = () -> ReadResult.FAILURE;
 
-
+	public List<Integer> getResult();
 	ReadResult getStatus();
 	
-    //CHANGE NAME TO READRESULT PLEASE
-	//Done
 	public static enum ReadResult {
 		SUCCESS,
 		FAILURE;
 	}
-
-
 
 }

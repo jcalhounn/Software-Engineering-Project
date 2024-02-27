@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.mockito.Mockito;
 
 public class ComputeAPIImpl implements ComputeAPI{
@@ -12,9 +14,22 @@ public class ComputeAPIImpl implements ComputeAPI{
     }
 
     @Override
-    public ComputeResult compute(ComputeRequest request) {
+    public ComputeResult compute(EngineComputeRequest request) {
         // TODO Auto-generated method stub
-        return ComputeResult.SUCCESS;
+        EngineComputeResult result = engineAPI.compute(request);
+
+        if(result == EngineComputeResult.SUCCESS)
+        {
+                
+                return ComputeResult.SUCCESS;
+        }
+        else
+            return ComputeResult.FAILURE;
+    }
+
+    public List<String> getHexInputs()
+    {
+        return ((ComputeAPIImpl) engineAPI).getHexInputs();
     }
 
 }
