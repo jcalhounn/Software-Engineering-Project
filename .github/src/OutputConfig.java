@@ -1,7 +1,16 @@
-import java.util.List;
 
 public interface OutputConfig {
 
-    public void setOutput(List<String> results);
-    public void getOutputConfig();
+	static interface OutputConfigVisitor {
+		public void visitFile(FileOutputConfig fileOutputConfig);
+	}
+	
+	static void visitOutputConfig(OutputConfig config, OutputConfigVisitor visitor) {
+		if (config instanceof FileOutputConfig) {
+			visitor.visitFile((FileOutputConfig) config);
+		} else {
+			throw new RuntimeException("Unexpected config type: " + config.getClass());
+		}
+	}
 }
+//done

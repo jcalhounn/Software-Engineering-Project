@@ -1,8 +1,4 @@
-import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.mockito.Mockito;
 
 /* Assignment 4 instructions: In the 'src' folder, implement the 
 computation you chose and added to the README in the computation component 
@@ -12,6 +8,24 @@ and break out sub-routines into their own methods */
 //EngineAPI Implementation
 public class EngineCompute implements EngineAPI {
 
+    //resembles a computation and return
+    public String compute(int value){
+        return value + " ";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     private List<Integer> decInputs;
     private int decGCD;
     private String hexGCD;
@@ -164,3 +178,4 @@ public class EngineCompute implements EngineAPI {
     
     
 }
+*/

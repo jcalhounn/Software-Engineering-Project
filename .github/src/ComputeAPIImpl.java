@@ -1,4 +1,3 @@
-import org.mockito.Mockito;
 
 public class ComputeAPIImpl implements ComputeAPI{
 

@@ -1,4 +1,4 @@
-import java.util.List;
+
 /**
  * API 3: Conceptual API within the compute engine process
  * 
@@ -24,9 +24,14 @@ import java.util.List;
  * comp1 will have instance objects of the "DataStore" API that the "StorageSystem" is required to handle methods from
  */
 
-//interface between componet 1 (EngineManager) & component 2 (EngineCompute)
+
+
+
+//interface between component 1 (EngineManager) & component 2 (EngineCompute)
 public interface EngineAPI {
+
 	//public EngineComputeResult compute(EngineComputeRequest request);
-	public EngineComputeResult compute(EngineComputeRequest request);
-	public void setDecInputs(List<Integer> decInputs);
+	//public void setDecInputs(List<Integer> decInputs);
+	String compute(int value);
 }
+// fixed
