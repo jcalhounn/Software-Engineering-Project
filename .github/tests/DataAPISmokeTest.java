@@ -1,41 +1,50 @@
-import org.mockito.Mockito;
-
-import static org.mockito.Mockito.when;
-
+import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.any;
 
 public class DataAPISmokeTest {
     
     @Test
-    public void readSmokeTest() {
-
+    public void readSmokeTest() throws Exception {
         
-        InputConfig input = Mockito.mock(InputConfig.class);
+        //from her sample
+        File file = new File("dataStoreTest.smokeTestRead.txt.temp");
+		file.createNewFile();
+		file.deleteOnExit();
+        
+        //InputConfig inputConfig = Mockito.mock(InputConfig.class);
+        
+        //hers
+        InputConfig inputConfig = new FileInputConfig(file.getCanonicalPath());
         DataAPI dataAPI = new DataAPIImpl();
         
-        DataReadResult readResult = dataAPI.read(input);
+        Assert.assertEquals(false, dataAPI.read(inputConfig).iterator().hasNext());
 
-        Assert.assertEquals(readResult.getStatus(),DataReadResult.ReadResult.SUCCESS);
+        //Assert.assertEquals(readResult.getStatus(),DataReadResult.ReadResult.SUCCESS);
 
     }
 
     @Test
-    public void writeSmokeTest() {
+    public void writeSmokeTest() throws Exception{
 
-        OutputConfig output = Mockito.mock(OutputConfig.class);
+        File file = new File("dataStoreTest.smokeTestWrite.txt.temp");
+		file.deleteOnExit();
+		OutputConfig outputConfig = new FileOutputConfig(file.getCanonicalPath());
+		
+		DataAPI dataStore = new DataAPIImpl();
+
+        Assert.assertEquals(DataWriteResult.WriteResultStatus.SUCCESS, dataStore.appendSingleResult(outputConfig, "result", ';').getStatus());
+	
+
+        /*OutputConfig output = Mockito.mock(OutputConfig.class);
         String result = "";
 
         DataAPI dataAPI = new DataAPIImpl();
 
-        DataWriteResult writeResult = dataAPI.writeSingleResult(output,result);
+        DataWriteResult writeResult = dataAPI.appendSingleResult(output,result,' ');
 
         Assert.assertEquals(writeResult.getStatus(),DataWriteResult.WriteResultStatus.SUCCESS);
-
+        */
 
     }
 }

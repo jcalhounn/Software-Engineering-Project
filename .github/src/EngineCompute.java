@@ -5,12 +5,15 @@ computation you chose and added to the README in the computation component
 of the engine. Remember to use good coding style! Choose descriptive variable names, 
 and break out sub-routines into their own methods */
 
+
+
+
 //EngineAPI Implementation
 public class EngineCompute implements EngineAPI {
 
     //resembles a computation and return
     public String compute(int value){
-        return value + " ";
+        return "" + value;
     }
 }
 

@@ -23,6 +23,9 @@
  * 
  * 
  */
+
+//ComputeAPI == her ComputationCoordinator
+
 public interface ComputeAPI {
   
   ComputeResult compute(ComputeRequest request);

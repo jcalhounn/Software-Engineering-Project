@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 
-
 //done
 
 
@@ -95,7 +94,7 @@ public class DataAPIImpl implements DataAPI  {
 		 * Using lambda syntax to create an instance of WriteResult. This is an alternative to the ComputeResult approach of providing
 		 * constants for success/failure.
 		 */
-		return () -> DataWriteResult.WriteResultStatus.SUCCESS; 
+		return () -> WriteResultStatus.SUCCESS; 
 	}
 
 	private void writeToFile(String fileName, String line) {

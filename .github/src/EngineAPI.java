@@ -28,6 +28,9 @@
 
 
 //interface between component 1 (EngineManager) & component 2 (EngineCompute)
+
+//EngineAPI == her ComputeEngine.java
+
 public interface EngineAPI {
 
 	//public EngineComputeResult compute(EngineComputeRequest request);
