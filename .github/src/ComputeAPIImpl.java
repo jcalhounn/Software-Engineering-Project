@@ -12,8 +12,11 @@ public class ComputeAPIImpl implements ComputeAPI{
 
     @Override
     public ComputeResult compute(ComputeRequest request) {
-        // TODO Auto-generated method stub
-        return ComputeResult.SUCCESS;
-    }
+		Iterable<Integer> integers = dataAPI.read(request.getInputConfig());
+		for (int val : integers) {
+			dataAPI.appendSingleResult(request.getOutputConfig(), engineAPI.compute(val), request.getDelimeter());
+		}
+		return ComputeResult.SUCCESS;
+	}
 
 }

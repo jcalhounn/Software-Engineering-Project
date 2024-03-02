@@ -94,7 +94,7 @@ public class DataAPIImpl implements DataAPI  {
 		 * Using lambda syntax to create an instance of WriteResult. This is an alternative to the ComputeResult approach of providing
 		 * constants for success/failure.
 		 */
-		return () -> WriteResultStatus.SUCCESS; 
+		return () -> DataWriteResult.WriteResultStatus.SUCCESS; 
 	}
 
 	private void writeToFile(String fileName, String line) {
