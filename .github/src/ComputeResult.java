@@ -9,7 +9,8 @@ public interface ComputeResult {
 	
 	public static enum ComputeResultStatus {
 		SUCCESS,
-		FAILURE;
+		FAILURE,
+		NOT_AN_INTEGER;
 	}
 
 }

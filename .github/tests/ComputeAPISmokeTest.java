@@ -11,16 +11,17 @@ public class ComputeAPISmokeTest {
 
     @Test
     public void smokeTest() {
-        DataAPI dataAPI = Mockito.mock(DataAPI.class);
+        DataAPIImpl dataAPI = Mockito.mock(DataAPIImpl.class);
 
         ComputeRequest request = Mockito.mock(ComputeRequest.class);
-        EngineAPI engineAPI = Mockito.mock(EngineAPI.class);
+        EngineCompute engineAPI = Mockito.mock(EngineCompute.class);
 
-        ComputeAPI computeAPI = new ComputeAPIImpl(dataAPI, engineAPI);
+        ComputeAPI computeAPI = new EngineManager(dataAPI, engineAPI);
         ComputeResult result =  computeAPI.compute(request);
         Assert.assertEquals(result.getStatus(), ComputeResult.ComputeResultStatus.SUCCESS);
-
+        
 
     }
 
 }
+//done

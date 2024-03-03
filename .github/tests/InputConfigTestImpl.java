@@ -24,11 +24,6 @@ public class InputConfigTestImpl implements InputConfig {
     *
     */
 
-    public void getInputConfig(){
-        
-    }
-
-
     public List<Integer> getInputs() {
         return inputs;
     }

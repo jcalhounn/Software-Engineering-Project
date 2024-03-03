@@ -1,4 +1,3 @@
-import java.util.List;
 
 /**
  * API 2: Process-level API between the compute engine and the layer that knows how to read/write 
@@ -28,7 +27,6 @@ import java.util.List;
 
 public interface DataAPI {
 	
-	DataReadResult read(InputConfig input); 
-	List<Integer> getData(); //DataReadResult is suppposed to represent any type of list, but for now we can do this
-	DataWriteResult writeSingleResult(OutputConfig output, String result); 
+	Iterable<Integer> read(InputConfig input);
+	DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter);
 }
