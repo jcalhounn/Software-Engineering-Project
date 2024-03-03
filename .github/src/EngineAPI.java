@@ -1,3 +1,4 @@
+import java.util.List;
 
 /**
  * API 3: Conceptual API within the compute engine process
@@ -36,5 +37,6 @@ public interface EngineAPI {
 	//public EngineComputeResult compute(EngineComputeRequest request);
 	//public void setDecInputs(List<Integer> decInputs);
 	String compute(int value);
+	int getGCD(List<Integer> decInputs);
 }
 // fixed

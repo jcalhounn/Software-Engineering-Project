@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.List;
 
 /* Assignment 4 instructions: In the 'src' folder, implement the 
 computation you chose and added to the README in the computation component 
@@ -11,15 +13,14 @@ and break out sub-routines into their own methods */
     //EngineAPI Implementation
     public class EngineCompute implements EngineAPI {
 
-        //resembles a computation and return
-   /*  public String compute(int value){
-            return "" + value;
-        }
-    }*/
+    // private static List<Integer> decInputs = new ArrayList<>();
+    
+
     public String compute(int num) {
-
+        
         StringBuilder hexNum = new StringBuilder();
-
+        
+        // decInputs.add(num);
         //incase number is 0 (even though it should be only positive numbers if all exceptions are implemented correctly?)
         if(num == 0){
             hexNum.insert(0, 0);
@@ -33,7 +34,7 @@ and break out sub-routines into their own methods */
                 num /= 16;
             }
         }
-
+        
         return "0x" + hexNum.toString();
     }
 
@@ -51,15 +52,36 @@ and break out sub-routines into their own methods */
 
         return digit;
     }
+
+    //finds greatest common divisor of a list of integers
+    public int getGCD(List<Integer> decInputs) {
+
+        int gcd = decInputs.get(0);
+
+        for(int i = 1; i < decInputs.size(); i++) {
+            gcd = getGCD(gcd, decInputs.get(i));
+        }
+
+        return gcd;
+    }
+
+    //finds GCD of two numbers using Euclid's algorithmn
+    private int getGCD(int numOne, int numTwo) {
+
+        //Euclid's algorithm
+        while(numTwo != 0){
+
+            int temp = numTwo;
+            numTwo = numOne % numTwo;
+            numOne = temp;
+        }
+
+        return numOne;
+    }
+
+
+
 }
-
-
-
-
-
-
-
-
 
 /*
     private List<Integer> decInputs;

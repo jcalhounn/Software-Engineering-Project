@@ -19,7 +19,7 @@ public class ComputeAPISmokeTest {
         ComputeAPI computeAPI = new EngineManager(dataAPI, engineAPI);
         ComputeResult result =  computeAPI.compute(request);
         Assert.assertEquals(result.getStatus(), ComputeResult.ComputeResultStatus.SUCCESS);
-
+        
 
     }
 
