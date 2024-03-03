@@ -8,7 +8,10 @@ public class EngineAPISmokeTest {
     public void smokeTest() {
 
         EngineAPI engine = new EngineCompute();
-		Assert.assertEquals("1", engine.compute(1));
+
+        //"0x" represents the tag for hexidecimal notation so you
+        // know what kind of number you are looking at
+		Assert.assertEquals("0xA", engine.compute(10));
        
     }
     

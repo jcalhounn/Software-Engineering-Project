@@ -8,17 +8,50 @@ and break out sub-routines into their own methods */
 
 
 
-//EngineAPI Implementation
-public class EngineCompute implements EngineAPI {
+    //EngineAPI Implementation
+    public class EngineCompute implements EngineAPI {
 
-    //resembles a computation and return
-    public String compute(int value){
-        return "" + value;
+        //resembles a computation and return
+   /*  public String compute(int value){
+            return "" + value;
+        }
+    }*/
+    public String compute(int num) {
+
+        StringBuilder hexNum = new StringBuilder();
+
+        //incase number is 0 (even though it should be only positive numbers if all exceptions are implemented correctly?)
+        if(num == 0){
+            hexNum.insert(0, 0);
+        }else{
+
+            while(num > 0){
+
+                int remainder = num % 16;
+                char hexDigit = getHexDigit(remainder);
+                hexNum.insert(0, hexDigit);
+                num /= 16;
+            }
+        }
+
+        return "0x" + hexNum.toString();
+    }
+
+    private char getHexDigit(int remainder) {
+        
+        char digit = '0';
+
+        if(remainder < 10){
+
+            digit = (char) ('0' + remainder); //takes the character 0(ASCII) and adds the remainder to get the remainder ASCII value
+        }else if(remainder >= 10){ //can only be betwen 10 & 15 since were dividing by 16
+
+            digit = (char) ('A' + remainder - 10); //finds correct ASCII value
+        }
+
+        return digit;
     }
 }
-
-
-
 
 
 

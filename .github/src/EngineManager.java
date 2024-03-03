@@ -20,19 +20,19 @@
 
 public class EngineManager implements ComputeAPI {
 
-    private final DataAPIImpl ds;
-	private final EngineCompute ce;
+    DataAPI ds;
+	EngineAPI ec;
 	
-	public EngineManager(DataAPIImpl ds, EngineCompute ce) {
+	public EngineManager(DataAPI ds, EngineAPI ec) {
 		this.ds = ds;
-		this.ce = ce;
+		this.ec = ec;
 	}
 
 	@Override
 	public ComputeResult compute(ComputeRequest request) {
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
 		for (int val : integers) {
-			ds.appendSingleResult(request.getOutputConfig(), ce.compute(val), request.getDelimeter());
+			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());
 		}
 		return ComputeResult.SUCCESS;
 	}

@@ -16,10 +16,10 @@ public class EngineAPIIntegrationTest {
         EngineAPI engine = new EngineCompute();
 
         //API 2   ask about datatype "DataAPITestTemp" at beginning rather than DataAPI
-        TestDataStore testDataAPI = new TestDataStore();
+        DataAPITestImp testDataAPI = new DataAPITestImp();
 
         //API 1
-        ComputeAPI computeAPI = new ComputeAPIImpl(testDataAPI, engine);
+        ComputeAPI computeAPI = new EngineManager(testDataAPI, engine);
 
         //using the variable-length int constructor (int...) to avoid having to create an array and 
         //manually enter these values. (this makes it easier to test over and over)
@@ -41,9 +41,9 @@ public class EngineAPIIntegrationTest {
         //now we check if the computation really worked! 
         //OUR expected result will be (each number in hex + GCF in hex)
         List<String> expected = new ArrayList<>();
-        expected.add("1");
-        expected.add("10");
-        expected.add("25");
+        expected.add("0x1");
+        expected.add("0xA");
+        expected.add("0x19");
 
         //if everything worked, we should have written out these results to the output
         Assert.assertEquals(expected, output.getOutputMutable());
