@@ -7,14 +7,14 @@ public class DataAPISmokeTest {
     @Test
     public void readSmokeTest() throws Exception {
         
-        //from her sample
+        //from sample
         File file = new File("dataStoreTest.smokeTestRead.txt.temp");
 		file.createNewFile();
 		file.deleteOnExit();
         
         //InputConfig inputConfig = Mockito.mock(InputConfig.class);
         
-        //hers
+        //Professor's sample
         InputConfig inputConfig = new FileInputConfig(file.getCanonicalPath());
         DataAPI dataAPI = new DataAPIImpl();
         
