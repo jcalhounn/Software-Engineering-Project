@@ -34,7 +34,7 @@ public class DataAPIImpl implements DataAPI  {
 				// input as it goes
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
 				String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
-				boolean closed = false;
+
 
 				@Override
 				public Integer next() {
@@ -45,7 +45,7 @@ public class DataAPIImpl implements DataAPI  {
 						line = buff.readLine();
 						if (!hasNext()) {
 							buff.close();
-							closed = true;
+
 						}
 					} catch (IOException e) {
 						throw new RuntimeException(e);

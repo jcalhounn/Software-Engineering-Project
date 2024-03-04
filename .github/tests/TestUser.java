@@ -13,7 +13,7 @@ public class TestUser {
 
 	public void run(String outputPath) {
 		char delimiter = ';';
-		String inputPath = "test" + File.separatorChar + "testInputFile.test";
+		String inputPath = "test" + File.separatorChar + "testInputFile.test.txt";
 
 		ComputeRequest request = new ComputeRequestImplTest(inputPath, delimiter, outputPath);
 

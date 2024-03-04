@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 public class TestMultiUser {
 	
@@ -18,11 +19,11 @@ public class TestMultiUser {
 	private ComputeAPI coordinator;
 	
 	@BeforeEach
-	public void initializeComputeEngine(DataAPI dataAPI , EngineAPI engineAPI) {
+	public void initializeComputeEngine() {
 		//TODO 2: create an instance of your computeAPI component; this is the component
 		// that the user will make requests to
 		// Store it in the 'coordinator' instance variable
-		coordinator = new EngineManager(dataAPI, engineAPI);
+		coordinator = new EngineManager(Mockito.mock(DataAPI.class), Mockito.mock(EngineAPI.class) );
 		
 	}
 
