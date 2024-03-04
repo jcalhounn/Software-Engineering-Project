@@ -13,18 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class TestMultiUser {
-	
-	// TODO 1: change the type of this variable to the name you're using for your //DONE
-	// User <-> ComputeEngine API
 	private ComputeAPI coordinator;
 	
 	@BeforeEach
 	public void initializeComputeEngine() {
-		//TODO 2: create an instance of your computeAPI component; this is the component
-		// that the user will make requests to
-		// Store it in the 'coordinator' instance variable
-		coordinator = new EngineManager(Mockito.mock(DataAPI.class), Mockito.mock(EngineAPI.class) );
 		
+		DataAPI dataAPI = Mockito.mock(DataAPIImpl.class);
+		EngineAPI engineAPI = Mockito.mock(EngineCompute.class);
+		coordinator = new EngineManager(dataAPI, engineAPI);
+
 	}
 
 	@Test
