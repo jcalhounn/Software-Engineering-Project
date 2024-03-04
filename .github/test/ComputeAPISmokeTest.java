@@ -10,7 +10,7 @@ public class ComputeAPISmokeTest {
     public void smokeTest() {
         DataAPIImpl dataAPI = Mockito.mock(DataAPIImpl.class);
 
-        ComputeRequest request = Mockito.mock(ComputeRequest.class);
+        ComputeRequestImplTest request = Mockito.mock(ComputeRequestImplTest.class);
         EngineCompute engineAPI = Mockito.mock(EngineCompute.class);
 
         ComputeAPI computeAPI = new EngineManager(dataAPI, engineAPI);

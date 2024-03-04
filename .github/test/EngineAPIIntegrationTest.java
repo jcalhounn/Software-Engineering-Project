@@ -16,7 +16,7 @@ public class EngineAPIIntegrationTest {
         EngineAPI engine = new EngineCompute();
 
         //API 2   ask about datatype "DataAPITestTemp" at beginning rather than DataAPI
-        DataAPITestImp testDataAPI = new DataAPITestImp();
+        DataAPIImpl testDataAPI = new DataAPIImpl();
 
         //API 1
         ComputeAPI computeAPI = new EngineManager(testDataAPI, engine);
@@ -28,7 +28,7 @@ public class EngineAPIIntegrationTest {
         OutputConfigTestImpl output = new OutputConfigTestImpl();
 
         //could be a real implementation, test implementation, or a mock (in this case were doing a mock)
-        ComputeRequest mockRequest = Mockito.mock(ComputeRequest.class);
+        ComputeRequestImplTest mockRequest = Mockito.mock(ComputeRequestImplTest.class);
         when(mockRequest.getInputConfig()).thenReturn(input);
         when(mockRequest.getOutputConfig()).thenReturn(output);
 

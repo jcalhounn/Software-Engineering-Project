@@ -34,7 +34,7 @@ public class DataAPIImpl implements DataAPI  {
 				// input as it goes
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
 				String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
-
+				boolean closed = false;
 
 				@Override
 				public Integer next() {
@@ -45,7 +45,7 @@ public class DataAPIImpl implements DataAPI  {
 						line = buff.readLine();
 						if (!hasNext()) {
 							buff.close();
-
+							closed = true;
 						}
 					} catch (IOException e) {
 						throw new RuntimeException(e);
@@ -66,7 +66,7 @@ public class DataAPIImpl implements DataAPI  {
 				 * we would at worst leak a read-lock file handle, which is NBD and certainly not worth architecting a larger solution around (honestly,
 				 * finalize() might even be overkill in this situation).
 				 */
-				/*@Override
+				@Override
 				public void finalize() {
 					if (!closed) {
 						try {
@@ -76,7 +76,7 @@ public class DataAPIImpl implements DataAPI  {
 							throw new RuntimeException(e);
 						}
 					}
-				}*/
+				}
 			};
 		} catch (IOException e) {
 			throw new RuntimeException(e);

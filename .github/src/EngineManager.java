@@ -20,20 +20,20 @@ import java.util.List;
 
 public class EngineManager implements ComputeAPI {
 
-    DataAPI ds;
+    DataAPIImpl ds;
 	EngineAPI ec;
 	
-	public EngineManager(DataAPI ds, EngineAPI ec) {
+	public EngineManager(DataAPIImpl ds, EngineAPI ec) {
 		this.ds = ds;
 		this.ec = ec;
 	}
 
 	@Override
-	public ComputeResult compute(ComputeRequest request) {
+	public ComputeResult compute(ComputeRequestImplTest request) {
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
 		
 		//compute GCD
-		int gcd = ec.getGCD((List<Integer>) integers);
+		int gcd=1;// = ec.getGCD((List<Integer>) integers,getInputs());
 
 		for (int val : integers) {
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());

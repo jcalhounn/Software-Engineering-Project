@@ -25,9 +25,8 @@
  * 
  */
 
-//ComputeAPI == her ComputationCoordinator
+//ComputeAPI == sample ComputationCoordinator
 
 public interface ComputeAPI {
-  
-  ComputeResult compute(ComputeRequest request);
+  ComputeResult compute(ComputeRequestImplTest request);
 }

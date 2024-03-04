@@ -10,18 +10,20 @@ import java.util.concurrent.Future;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+
 
 public class TestMultiUser {
 	private ComputeAPI coordinator;
 	
 	@BeforeEach
 	public void initializeComputeEngine() {
-		
-		DataAPI dataAPI = Mockito.mock(DataAPIImpl.class);
-		EngineAPI engineAPI = Mockito.mock(EngineCompute.class);
-		coordinator = new EngineManager(dataAPI, engineAPI);
-
+		//TODO 2: create an instance of your coordinator component; this is the component
+		// that the user will make requests to
+		// Store it in the 'coordinator' instance variable
+		DataAPIImpl dataAPI = new DataAPIImpl();
+		EngineAPI engineAPI = new EngineCompute();
+		// dataAPI.getFileBasedIterator();
+		coordinator = new EngineManager(dataAPI,engineAPI);
 	}
 
 	@Test
