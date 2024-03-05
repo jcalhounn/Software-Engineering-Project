@@ -35,7 +35,9 @@ public class EngineManager implements ComputeAPI {
 		
 		//compute GCD
 		List<Integer> dataIntegers = new ArrayList<Integer>();
-		integers.forEach(Integer -> {dataIntegers.add(Integer);});
+		integers.forEach(Integer -> {
+			dataIntegers.add(Integer);
+		});
 
 		int gcd = ec.getGCD(dataIntegers);
 
