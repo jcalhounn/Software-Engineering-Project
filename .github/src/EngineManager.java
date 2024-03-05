@@ -16,24 +16,28 @@
  *      d. Request that the data storage component write the results to the output
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EngineManager implements ComputeAPI {
 
-    DataAPIImpl ds;
+    DataAPI ds;
 	EngineAPI ec;
 	
-	public EngineManager(DataAPIImpl ds, EngineAPI ec) {
+	public EngineManager(DataAPI ds, EngineAPI ec) {
 		this.ds = ds;
 		this.ec = ec;
 	}
 
 	@Override
-	public ComputeResult compute(ComputeRequestImplTest request) {
+	public ComputeResult compute(ComputeRequest request) {
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
 		
 		//compute GCD
-		int gcd=1;// = ec.getGCD((List<Integer>) integers,getInputs());
+		List<Integer> dataIntegers = new ArrayList<Integer>();
+		integers.forEach(Integer -> {dataIntegers.add(Integer);});
+
+		int gcd = ec.getGCD(dataIntegers);
 
 		for (int val : integers) {
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());

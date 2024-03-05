@@ -20,7 +20,7 @@ public class TestMultiUser {
 		//TODO 2: create an instance of your coordinator component; this is the component
 		// that the user will make requests to
 		// Store it in the 'coordinator' instance variable
-		DataAPIImpl dataAPI = new DataAPIImpl();
+		DataAPI dataAPI = new DataAPIImpl();
 		EngineAPI engineAPI = new EngineCompute();
 		// dataAPI.getFileBasedIterator();
 		coordinator = new EngineManager(dataAPI,engineAPI);
@@ -28,7 +28,7 @@ public class TestMultiUser {
 
 	@Test
 	public void compareMultiAndSingleThreaded() throws Exception {
-		int nThreads = 4;
+		int nThreads = 5;
 		List<TestUser> testUsers = new ArrayList<>();
 		for (int i = 0; i < nThreads; i++) {
 			testUsers.add(new TestUser(coordinator));

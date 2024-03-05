@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataAPITestImp implements DataAPI {
 
-    private List<Integer> userInputData = new ArrayList<>();;
+    //private List<Integer> userInputData = new ArrayList<>();;
 
 
     /*ASK PROFESSOR ABOUT THIS METHOD LOLOLOL*/
@@ -20,7 +20,7 @@ public class DataAPITestImp implements DataAPI {
         //since this is test code, we can assume its getting the right type of data. 
         //for our production code we want some better input validation
 
-        try{
+        /*try{
             //reader passes new FileReader(String), where the string is the name of the file gotten from the InputConfig variable 
             BufferedReader reader = new BufferedReader(new FileReader(((FileInputConfig) input).getFileName()));
            
@@ -46,10 +46,10 @@ public class DataAPITestImp implements DataAPI {
             e.printStackTrace();
         }
 
-        return userInputData;
+        return userInputData;*/
         //im not sure how we would return this as she does in her test sample because we 
         // are using a wrapper class. 
-        //return ((InputConfigTestImpl)input).getInputs();
+        return ((InputConfigTestImpl)input).getInputs();
 
         //assuming the data transfer is successful
         //return () -> DataReadResult.ReadResult.SUCCESS;
