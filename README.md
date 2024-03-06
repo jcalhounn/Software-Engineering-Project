@@ -3,5 +3,8 @@
 ![SystemDiagram](https://github.com/jcalhounn/Software-Engineering-Project/blob/main/SystemDiagram.jpg)
 
 
-Project Function #1:
+Project Operation:
   Takes in an assortment of numbers, finds the GCD, and converts the numbers and GCD to hexadecimal.
+
+Functions:
+  - Multithreading; max threads = 5
