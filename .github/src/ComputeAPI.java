@@ -1,4 +1,4 @@
-import java.util.List;
+
 
 /**
  * API 1: A network API between the user and the compute engine
@@ -25,9 +25,8 @@ import java.util.List;
  * 
  */
 
-//ComputeAPI == her ComputationCoordinator
+//ComputeAPI == sample ComputationCoordinator
 
 public interface ComputeAPI {
-  
   ComputeResult compute(ComputeRequest request);
 }

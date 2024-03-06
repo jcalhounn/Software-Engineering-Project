@@ -8,6 +8,7 @@ public interface InputConfig {
         
             if(config instanceof FileInputConfig){
             return visitor.visitFile((FileInputConfig) config);
+            
         }
         throw new RuntimeException("Unexpected config type: " + config.getClass());
         }
