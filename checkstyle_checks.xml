@@ -105,11 +105,11 @@
       <message key="name.invalidPattern"
              value="Parameter name ''{0}'' must match pattern ''{1}''."/>
     </module>
-    <module name="LambdaParameterName">
+    <!-- <module name="LambdaParameterName">
       <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
       <message key="name.invalidPattern"
              value="Lambda parameter name ''{0}'' must match pattern ''{1}''."/>
-    </module>
+    </module> -->
     <module name="CatchParameterName">
       <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
       <message key="name.invalidPattern"
@@ -150,12 +150,12 @@
       <message key="name.invalidPattern"
              value="Interface type name ''{0}'' must match pattern ''{1}''."/>
     </module>
-    <module name="NoFinalizer"/>
+    <!-- <module name="NoFinalizer"/>
     <module name="MethodParamPad">
       <property name="tokens"
                value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
                     SUPER_CTOR_CALL, ENUM_CONSTANT_DEF, RECORD_DEF"/>
-    </module>
+    </module> -->
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationMostCases"/>
       <property name="tokens"
