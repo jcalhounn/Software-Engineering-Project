@@ -18,6 +18,8 @@
         "c:\\Users\\taylor diane\\Desktop\\mockito-core-5.10.0.jar",
         "c:\\Users\\taylor diane\\Desktop\\objenesis-3.3.jar"
     ],
+
     "java.compile.nullAnalysis.mode": "automatic",
     "java.configuration.updateBuildConfiguration": "interactive"
+
 }
