@@ -3,12 +3,14 @@ apply plugin: 'java'
 sourceSets {
 	main {
 	  java {
+
 		srcDirs = ['.github/src']
 	  }
 	}
 	test {
 	  java {
 	     srcDirs = ['.github/test']
+
 	  }
 	 }
 }
