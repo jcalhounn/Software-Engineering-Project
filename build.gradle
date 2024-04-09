@@ -5,12 +5,10 @@ sourceSets {
 	  java {
 
 		srcDirs = ['.github/src']
-
 	  }
 	}
 	test {
 	  java {
-
 	     srcDirs = ['.github/test']
 
 	  }
