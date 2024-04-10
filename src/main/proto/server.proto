@@ -1,0 +1,20 @@
+
+
+message Input {
+  repeated int32 numberList = 1;
+  optional FileOutputConfig fileOutputConfig = 2;
+  optional FileInputConfig fileInputConfig = 3;
+  optional string delimiter = 4;
+}
+
+message FileOutputConfig {
+    optional string filename = 1;
+}
+
+message FileInputConfig {
+  optional string filename = 1;
+}
+
+service ComputeServer {
+  rpc compute(Input) returns (FileOutputConfig){}; //returns Output
+}
