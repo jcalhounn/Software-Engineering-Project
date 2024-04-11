@@ -14,7 +14,19 @@ message FileOutputConfig {
 message FileInputConfig {
   optional string filename = 1;
 }
+message Output {
+  optional ComputeResult result = 1;
+  optional int32 resultsList = 2;
+}
 
+message ComputeResult{
+  enum ComputeResultStatus
+  {
+    SUCCESS = 1;
+    FAILURE = 2;
+  }
+  optional ComputeResultStatus status = 2;
+}
 service ComputeServer {
-  rpc compute(Input) returns (FileOutputConfig){}; //returns Output
+  rpc compute(Input) returns (Output){}; //returns Output
 }
