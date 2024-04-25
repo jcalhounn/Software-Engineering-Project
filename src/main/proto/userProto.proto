@@ -1,0 +1,19 @@
+//Service block for ComputeAPI that the User supplies data or a file to
+service ComputeAPI{
+  rpc compute (ComputeRequest) returns (ComputeResult){}
+}
+//message ComputeRequest
+message ComputeRequest{
+    optional InputConfig input=1;
+    optional OutputConfig output =2;
+    optional string delimiter=3;
+}
+message ComputeResult{
+
+}
+
+message InputConfig{
+   optional string FileName=1;
+   repeated int32 list=2;
+   optional int32 singleData=3;
+}
