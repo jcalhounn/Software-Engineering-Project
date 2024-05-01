@@ -9,10 +9,17 @@ message ComputeRequest{
     optional string delimiter=3;
 }
 message ComputeResult{
-
+  optional int32 SUCCESS=1;
+  optional int32 FAILURE=2;
 }
 
 message InputConfig{
+   optional string FileName=1;
+   repeated int32 list=2;
+   optional int32 singleData=3;
+}
+
+message OutputConfig{
    optional string FileName=1;
    repeated int32 list=2;
    optional int32 singleData=3;

@@ -17,19 +17,21 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
     }
 
     // Boilerplate TODO: replace this method with actual client call/response logic
-    public void order() {
+    public void request() {
 
-        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput("").setOutput("").setDelimiter("").build();
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName("test.txt").build();
+        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
+        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(",").build();
         UserProto.ComputeResult response;
         try {
             response = blockingStub.compute(request);
         } catch (StatusRuntimeException e) {
             return;
         }
-        if (response.hasErrorMessage()) {
-            System.err.println("Error: " + response.getErrorMessage());
+        if (response==null) {
+            System.err.println("Failure Response"); //+ response.getErrorMessage());
         } else {
-            System.out.println("Order number: " + response.getOrderNumber());
+            System.out.println("Compute Success!"); //+ response.getOrderNumber());
         }
     }
 
@@ -39,8 +41,8 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
-            PhoneOrderClient client = new PhoneOrderClient(channel); // Boilerplate TODO: update to this class name
-            client.order();
+            UserClient client = new UserClient(channel); // Boilerplate TODO: update to this class name
+            client.request();
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }
