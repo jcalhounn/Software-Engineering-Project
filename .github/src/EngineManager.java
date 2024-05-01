@@ -47,8 +47,7 @@ public class EngineManager implements ComputeAPI {
 			if(first) {
 				gcd = val;
 				first = false;
-			}
-			else {
+			} else {
 				gcd = ec.getGCD(gcd, val);
 			}
 
