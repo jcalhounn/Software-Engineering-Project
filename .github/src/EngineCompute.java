@@ -31,36 +31,7 @@ and break out sub-routines into their own methods */
 
         return "0x" + hexNum.toString(); //maybe remove toString()?
 
-//        if (num == 0) {
-//            return "0x0";
-//        }
-//
-//        char[] hexChars = new char[8]; // Assuming integers are 32-bit
-//        int i = 0;
-//
-//        while (num != 0 && i < 8) {
-//            int remainder = num % 16;
-//            hexChars[i++] = getHexDigit(remainder);
-//            num /= 16;
-//        }
-//
-//        reverseArray(hexChars, i);
-//
-//        return "0x" + new String(hexChars, 0, i);
     }
-
-        private void reverseArray(char[] hexChars, int i) {
-
-            int start = 0;
-            int end = i - 1;
-            while (start < end) {
-                char temp = hexChars[start];
-                hexChars[start] = hexChars[end];
-                hexChars[end] = temp;
-                start++;
-                end--;
-            }
-        }
 
         private char getHexDigit(int remainder) {
         
