@@ -44,8 +44,7 @@ public class EngineManager implements ComputeAPI {
 		/****REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE****/
 
 		for (int val : integers) {
-			if(first)
-			{
+			if(first) {
 				gcd = val;
 				first = false;
 			}
