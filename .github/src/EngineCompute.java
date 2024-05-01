@@ -8,20 +8,14 @@ of the engine. Remember to use good coding style! Choose descriptive variable na
 and break out sub-routines into their own methods */
 
 
-
-
     //EngineAPI Implementation
     public class EngineCompute implements EngineAPI {
-
-    // private static List<Integer> decInputs = new ArrayList<>();
-    
 
     public String compute(int num) {
         
         StringBuilder hexNum = new StringBuilder();
-        
-        // decInputs.add(num);
-        //incase number is 0 (even though it should be only positive numbers if all exceptions are implemented correctly?)
+
+        //in case number is 0 (even though it should be only positive numbers if all exceptions are implemented correctly?)
         if(num == 0){
             hexNum.insert(0, 0);
         }else{
@@ -34,18 +28,20 @@ and break out sub-routines into their own methods */
                 num /= 16;
             }
         }
-        
-        return "0x" + hexNum.toString();
+
+        return "0x" + hexNum.toString(); //maybe remove toString()?
+
     }
 
-    private char getHexDigit(int remainder) {
+        private char getHexDigit(int remainder) {
         
         char digit = '0';
 
         if(remainder < 10){
 
             digit = (char) ('0' + remainder); //takes the character 0(ASCII) and adds the remainder to get the remainder ASCII value
-        }else if(remainder >= 10){ //can only be betwen 10 & 15 since were dividing by 16
+
+        }else if(remainder >= 10){ //can only be between 10 & 15 since were dividing by 16
 
             digit = (char) ('A' + remainder - 10); //finds correct ASCII value
         }
@@ -53,20 +49,21 @@ and break out sub-routines into their own methods */
         return digit;
     }
 
-    //finds greatest common divisor of a list of integers
-    public int getGCD(List<Integer> decInputs) {
+    /***** COMMENTED OUT / NOT USED TO IMPROVE CPU USAGE *****/
+//    //finds greatest common divisor of a list of integers
+//    public int getGCD(List<Integer> decInputs) {
+//
+//        int gcd = decInputs.get(0);
+//
+//        for(int i = 1; i < decInputs.size(); i++) {
+//            gcd = getGCD(gcd, decInputs.get(i));
+//        }
+//
+//        return gcd;
+//    }
 
-        int gcd = decInputs.get(0);
-
-        for(int i = 1; i < decInputs.size(); i++) {
-            gcd = getGCD(gcd, decInputs.get(i));
-        }
-
-        return gcd;
-    }
-
-    //finds GCD of two numbers using Euclid's algorithmn
-    private int getGCD(int numOne, int numTwo) {
+    //finds GCD of two numbers using Euclid's algorithm
+    public int getGCD(int numOne, int numTwo) {
 
         //Euclid's algorithm
         while(numTwo != 0){

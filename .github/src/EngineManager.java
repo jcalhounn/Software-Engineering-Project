@@ -32,16 +32,25 @@ public class EngineManager implements ComputeAPI {
 	@Override
 	public ComputeResult compute(ComputeRequest request) {
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
-		
-		//compute GCD
-		List<Integer> dataIntegers = new ArrayList<Integer>();
-		integers.forEach(Integer -> {
-			dataIntegers.add(Integer);
-		});
+		int gcd = Integer.MIN_VALUE;
+		boolean first = true;
 
-		int gcd = ec.getGCD(dataIntegers);
+//		//compute GCD
+//		List<Integer> dataIntegers = new ArrayList<Integer>();
+//		integers.forEach(Integer -> {
+//			dataIntegers.add(Integer);
+//		});
+
+		/****REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE****/
 
 		for (int val : integers) {
+			if(first) {
+				gcd = val;
+				first = false;
+			} else {
+				gcd = ec.getGCD(gcd, val);
+			}
+
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());
 		}
 

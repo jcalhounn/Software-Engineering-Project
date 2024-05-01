@@ -30,13 +30,10 @@ import java.util.List;
 
 //interface between component 1 (EngineManager) & component 2 (EngineCompute)
 
-//EngineAPI == her ComputeEngine.java
+//EngineAPI == professor's ComputeEngine.java
 
 public interface EngineAPI {
 
-	//public EngineComputeResult compute(EngineComputeRequest request);
-	//public void setDecInputs(List<Integer> decInputs);
 	String compute(int value);
-	int getGCD(List<Integer> decInputs);
+	int getGCD(int a, int b); // changed parameters to improve CPU Usage
 }
-// fixed
