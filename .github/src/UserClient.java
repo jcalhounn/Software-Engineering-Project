@@ -5,7 +5,10 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
-
+//
+//import phoneservice.PhoneOrderServiceGrpc.PhoneOrderServiceBlockingStub;
+//import phoneservice.PhoneService.PhoneOrderRequest;
+//import phoneservice.PhoneService.PhoneOrderResponse;
 
 //Client creating ComputeRequest
 
@@ -19,13 +22,16 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
     // Boilerplate TODO: replace this method with actual client call/response logic
     public void request() {
 
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName("test.txt").build();
-        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
+        //user fills out input output configs and delimiter
+
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(".github/test/testInputFile.txt").build();
+        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(".github/test/testOutputFile.txt").build();
         UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(",").build();
         UserProto.ComputeResult response;
         try {
             response = blockingStub.compute(request);
         } catch (StatusRuntimeException e) {
+            e.printStackTrace();
             return;
         }
         if (response==null) {
@@ -36,6 +42,10 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
     }
 
     public static void main(String[] args) throws Exception {
+
+        //TODO: system.out.print to user and outputing to terminal (keep super basic, bc we will be implementing a GUI soon after)
+        //TODO: Move the UserProto. variables to here so we can scan user inputs and set them here.
+
         String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())

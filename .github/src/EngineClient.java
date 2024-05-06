@@ -21,9 +21,11 @@ public class EngineClient {
     // Boilerplate TODO: replace this method with actual client call/response logic
     public void request() {
 
+
+        //TODO: Replace these variables with the proper ones needed to talk to DataServer
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName("test.txt").build();
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
-        UserProto.Iterable response;
+        UserProto.Page response;
         try {
             response = blockingStub.read(inputConfig);
         } catch (StatusRuntimeException e) {
@@ -42,7 +44,7 @@ public class EngineClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
-            UserClient client = new UserClient(channel); // Boilerplate TODO: update to this class name
+            EngineClient client = new EngineClient(channel); // Boilerplate TODO: update to this class name
             client.request();
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);

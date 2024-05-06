@@ -14,8 +14,14 @@ public class EngineServer { // Boilerplate TODO: Change name of class
         /* The port on which the server should run */
         int port = 50051; // Boilerplate TODO: Consider changing the port (only one server per port)
 
+        //EngineManager object
+
+        EngineManager manager = new EngineManager(new DataAPIImpl(),new EngineCompute()); //EngineManager parameters may not work
+        //DataAPIImpl will become the DataClient that is added later
+
+
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-                .addService(new EngineManager()) // Boilerplate TODO: Change name of class
+                .addService(new ComputeAPIServerImpl(manager)) // pass EngineManager Object in impl()
                 .addService(ProtoReflectionService.newInstance())
                 .build()
                 .start();
