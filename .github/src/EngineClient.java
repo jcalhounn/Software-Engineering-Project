@@ -18,47 +18,29 @@ public class EngineClient implements DataAPI{
         blockingStub = DataAPIGrpc.newBlockingStub(channel);  // Boilerplate TODO: update to appropriate blocking stub
     }
 
-    // Boilerplate TODO: replace this method with actual client call/response logic
-    public void request() {
-
-
-        //TODO: Replace these variables with the proper ones needed to talk to DataServer
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName("test.txt").build();
-        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
-        UserProto.Page response;
-        try {
-            response = blockingStub.read(inputConfig);
-        } catch (StatusRuntimeException e) {
-            return;
-        }
-        if (response==null) {
-            System.err.println("Failure Response"); //+ response.getErrorMessage());
-        } else {
-            System.out.println("Compute Success!"); //+ response.getOrderNumber());
-        }
-    }
-
-//    public static void main(String[] args) throws Exception {
-//        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
-//
-//        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
-//                .build();
-//        try {
-//            EngineClient client = new EngineClient(channel); // Boilerplate TODO: update to this class name
-//            client.request();
-//        } finally {
-//            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
-//        }
-//    }
+//        //TODO: Replace these variables with the proper ones needed to talk to DataServer
+//        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName("test.txt").build();
+//        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
+//        UserProto.Page response;
 
     @Override
     public Iterable<Integer> read(InputConfig input) {
-            blockingstub.read(input);
-        return null;
+        //TODO: User provided list will not work for this "(FileInputConfig)input).getFileName())" logic
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig)input).getFileName()).build();
+        UserProto.Page response;
+
+            response = blockingStub.read(inputConfig);
+
+        return response.getResultsList();//add page to interable list logic
     }
 
     @Override
     public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
-        return null;
+
+        //TODO: Convert Parameters into "UserProto." Versions and call appendSingleResult with blockingStub
+
+        //Above returns UserProto.DataWriteResult and needs conversion
+        //TODO: Return type will be DataWriteResult
+        return ;
     }
 }

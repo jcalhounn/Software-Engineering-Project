@@ -50,6 +50,8 @@ message OutputConfig{
 }
 
 message DataWriteResult{
+
+  optional WriteResultStatus status=1;
   enum WriteResultStatus{
     UNKNOWN = 0;
     SUCCESS = 1;
