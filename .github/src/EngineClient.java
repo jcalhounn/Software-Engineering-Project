@@ -38,7 +38,9 @@ public class EngineClient implements DataAPI{
     public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
 
         //TODO: Convert Parameters into "UserProto." Versions and call appendSingleResult with blockingStub
+        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName((OutputConfig)output).getFileName()).build();
 
+        UserProto.DataWriteResult protoResult = blockingStub.appendSingleResult(outputConfig);
         //Above returns UserProto.DataWriteResult and needs conversion
         //TODO: Return type will be DataWriteResult
         return ;

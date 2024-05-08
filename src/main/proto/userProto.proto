@@ -5,7 +5,7 @@ service ComputeAPI{
 
 service DataAPI{
 
-  rpc appendSingleResult (Output) returns (DataWriteResult){}
+  rpc appendSingleResult (OutputConfig) returns (DataWriteResult){}
   rpc read (InputConfig) returns (Page){}//Change data return type to a Page rather than an Iterable<Integer>
 }
 
