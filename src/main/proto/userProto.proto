@@ -61,6 +61,6 @@ message DataWriteResult{
 message Output{
 
   optional OutputConfig output=1;
-  repeated string result=2;
+  optional string result=2; //repeated is needed if sending a list
   optional string delimiter=3;
 }

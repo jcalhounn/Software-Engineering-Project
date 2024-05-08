@@ -2,9 +2,7 @@
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import io.grpc.Grpc;
-import io.grpc.InsecureServerCredentials;
-import io.grpc.Server;
+import io.grpc.*;
 import io.grpc.protobuf.services.ProtoReflectionService;
 
 public class EngineServer { // Boilerplate TODO: Change name of class
@@ -15,8 +13,13 @@ public class EngineServer { // Boilerplate TODO: Change name of class
         int port = 50051; // Boilerplate TODO: Consider changing the port (only one server per port)
 
         //EngineManager object
+        String target = "localhost:50052";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
-        EngineManager manager = new EngineManager(new DataAPIImpl(),new EngineCompute()); //EngineManager parameters may not work
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+
+
+        EngineManager manager = new EngineManager(new EngineClient(channel),new EngineCompute()); //EngineManager parameters may not work
         //DataAPIImpl will become the DataClient that is added later
 
 

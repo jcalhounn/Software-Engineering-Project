@@ -8,7 +8,7 @@ import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 
-public class EngineClient {
+public class EngineClient implements DataAPI{
 
 //Client creating ComputeRequest
  // Boilerplate TODO: change to <servicename>Client
@@ -38,16 +38,27 @@ public class EngineClient {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+//    public static void main(String[] args) throws Exception {
+//        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+//
+//        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+//                .build();
+//        try {
+//            EngineClient client = new EngineClient(channel); // Boilerplate TODO: update to this class name
+//            client.request();
+//        } finally {
+//            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+//        }
+//    }
 
-        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
-                .build();
-        try {
-            EngineClient client = new EngineClient(channel); // Boilerplate TODO: update to this class name
-            client.request();
-        } finally {
-            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
-        }
+    @Override
+    public Iterable<Integer> read(InputConfig input) {
+            blockingstub.read(input);
+        return null;
+    }
+
+    @Override
+    public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
+        return null;
     }
 }
