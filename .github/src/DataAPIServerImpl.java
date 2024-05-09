@@ -1,6 +1,10 @@
+import java.util.Iterator;
+
 public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
 
     DataAPIImpl dataAPI;
+
+
 
     public DataAPIServerImpl(DataAPIImpl dataAPI) {
         this.dataAPI = dataAPI;
@@ -29,14 +33,21 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
     public void read(UserProto.InputConfig request,
                       io.grpc.stub.StreamObserver<UserProto.Page> responseObserver) {
 
-        //TODO: Convert UserProto.InputConfig to INputConfig and return using streamobserver on completed *Reference the ComputeAPIServerImpl
+        //TODO: Convert UserProto.InputConfig to InputConfig and return using stream observer on completed *Reference the ComputeAPIServerImpl
         FileInputConfig inputConfig = new FileInputConfig(request.getFileName());
 
 
-        responseObserver.onNext();
+        Iterable<Integer> list = dataAPI.read(inputConfig);
+        UserProto.Page page = UserProto.Page.newBuilder().build();
+        list.forEach(page::getResults);
 
+//        for(int i : list) {
+//            page.getResults(i);
+//        }
+        responseObserver.onNext(page);
         responseObserver.onCompleted();
-
     }
+
+
 }
 
