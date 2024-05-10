@@ -3,6 +3,7 @@ import io.grpc.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
@@ -16,8 +17,23 @@ import javax.xml.crypto.Data;
 
 public class EngineClient implements DataAPI{
 
-    //Client creating ComputeRequest
- // Boilerplate TODO: change to <servicename>Client
+    //EXPLANATION 6
+    //This client is meant to act like the class DataAPIImpl
+    //The DataAPIImpl was first used in the "EngineServer" in the line,
+    //EngineManager manager = new EngineManager(new DataAPIImpl(),new EngineCompute());
+    //this version was working with the output file
+    //now, the line is
+    //EngineManager manager = new EngineManager(new EngineClient(channel),new EngineCompute());
+    //this is why the EngineClient must behave like the DataAPIImpl
+    //the method appendSingleResult currently works and I am struggling on the read method
+    //Reference emails with the Professor.
+    //My current interpretation is that the Engine client needs to be able to determine what the current page number
+    //is and then read out the next 100 numbers on that page or until null on that page and return those numbers.
+    //I am struggling to figure out the "1 page at a time" reading of the file and understanding where the
+    //returned Iterable<Integer> is going.
+    //To test the program, Run the DataServer first, then the EngineServer, then finally the UserClient
+    //
+
     private final DataAPIGrpc.DataAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
     public EngineClient(Channel channel) {
@@ -31,28 +47,34 @@ public class EngineClient implements DataAPI{
 
     @Override
     public Iterable<Integer> read(InputConfig input) {
-        //TODO: User provided list will not work for this "(FileInputConfig)input).getFileName())" logic
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig)input).getFileName()).build();
-        UserProto.Page response = UserProto.Page.newBuilder().build();
-        FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
 
-
+        //TODO: If the User provided a list it will not work for this "(FileInputConfig)input).getFileName())" logic
+//        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).build();
+//        UserProto.Page response = UserProto.Page.newBuilder().build();
+//        //FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
+//        Iterable<Integer> list = new ArrayList<Integer>();
+//        response = blockingStub.read(inputConfig);
+//
+//        int pageNumber = response.getCurrentPage();
+//        for (int i = ((pageNumber * 100) - 100); i < 99 * pageNumber; i++) {
+//
 
         return InputConfig.visitInputConfig(input, fileConfig -> {
 
-            // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
-            return new Iterable<Integer>() {
-                @Override
-                public Iterator<Integer> iterator() {
-                    return getFileBasedIterator(fileInputConfig.getFileName());
-                }
-            };
-        });
+                // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
+                return new Iterable<Integer>() {
+                    @Override
+                    public Iterator<Integer> iterator() {
+                        return getFileBasedIterator(fileConfig.getFileName());
+                    }
+                };
+            });
+        }
 
-    }
 
 
-    public Iterator<Integer> getFileBasedIterator(String fileName) {
+
+    private Iterator<Integer> getFileBasedIterator(String fileName) {
         try {
             return new Iterator<Integer>() {
                 // A Scanner is also fine to use, but has an important difference as we add threads:
@@ -94,22 +116,26 @@ public class EngineClient implements DataAPI{
                  * we would at worst leak a read-lock file handle, which is NBD and certainly not worth architecting a larger solution around (honestly,
                  * finalize() might even be overkill in this situation).
                  */
+
             };
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-//        Iterable<Integer> list = read(fileInputConfig);
-//        UserProto.Page page = UserProto.Page.newBuilder().build();
-//        for(int i:list) {
-//            page.getResults(i);
-//        }
-
 //
-//        response = blockingStub.read(inputConfig);
+//        return InputConfig.visitInputConfig(input, fileConfig -> {
 //
-//        return response.getResultsList();//add page to iterable list logic
+//            // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
+//            return new Iterable<Integer>() {
+//                @Override
+//                public Iterator<Integer> iterator() {
+//                    return getFileBasedIterator(fileInputConfig.getFileName());
+//                }
+//            };
+//        });
+//
+//    }
 
 
     @Override
@@ -119,7 +145,7 @@ public class EngineClient implements DataAPI{
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(((FileOutputConfig)output).getFileName()).build();
 
         UserProto.DataWriteResult protoResult = blockingStub.appendSingleResult(outputConfig);
-        //Above returns UserProto.DataWriteResult and needs conversion
+        //Above returns UserProto.DataWriteResult and needs conversion // DONE
 
         //TODO: Return type will be DataWriteResult
         if(protoResult.getStatus().equals(UserProto.DataWriteResult.WriteResultStatus.SUCCESS)) {

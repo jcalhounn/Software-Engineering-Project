@@ -5,24 +5,31 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
-//
-//import phoneservice.PhoneOrderServiceGrpc.PhoneOrderServiceBlockingStub;
-//import phoneservice.PhoneService.PhoneOrderRequest;
-//import phoneservice.PhoneService.PhoneOrderResponse;
 
 //Client creating ComputeRequest
 
-public class UserClient { // Boilerplate TODO: change to <servicename>Client
+public class UserClient {
+
     private final ComputeAPIGrpc.ComputeAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
     public UserClient(Channel channel) {
         blockingStub = ComputeAPIGrpc.newBlockingStub(channel);  // Boilerplate TODO: update to appropriate blocking stub
     }
 
-    // Boilerplate TODO: replace this method with actual client call/response logic
+
+    //Explaination 2
+    //We need to send our code across the network and this process is buffered by a protocol file
+    //this means that the data types that our project expects to see is defined in the proto file
+    //To send our actual request through the compute method, the proto is structured in a way that
+    //states what data type will be expected as a parameter and as the return type
+    //The blockingStub.compute(request) is an rpc service defined in the proto, so it needs proto parameters
+    //these parameters are set through the initialization of inputConfig,and outputConfig, and explicitly for delimiter
+    //this proto readable request is then sent across the channel to the EngineServer
+    //Continued on EngineServer
+
     public void request() {
 
-        //user fills out input output configs and delimiter
+        //TODO: user fills out input output configs and delimiter attached through GUI
 
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(".github/test/testInputFile.txt").build();
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(".github/test/testOutputFile.txt").build();
@@ -41,10 +48,20 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
         }
     }
 
+
+    //EXPLANATION 1
+    //UserClient wants to make a compute request across a "network"
+    //To do this, we host a server on "EngineServer"
+    //To connect to this server we use the target address "localhost:50051" that matches up to the port declared in EngineSerer
+    //The channel is then built between the client and server.
+    //we then call the request method on our UserClient object
+    //Continued above.
+
     public static void main(String[] args) throws Exception {
 
-        //TODO: system.out.print to user and outputing to terminal (keep super basic, bc we will be implementing a GUI soon after)
+        //TODO: system.out.print to user and outputting to terminal (keep super basic, bc we will be implementing a GUI soon after)
         //TODO: Move the UserProto. variables to here so we can scan user inputs and set them here.
+
 
         String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
@@ -52,7 +69,7 @@ public class UserClient { // Boilerplate TODO: change to <servicename>Client
                 .build();
         try {
             UserClient client = new UserClient(channel); // Boilerplate TODO: update to this class name
-            client.request();
+            client.request();//
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }

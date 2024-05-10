@@ -6,6 +6,12 @@ import io.grpc.protobuf.services.ProtoReflectionService;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+//EXPLANATION 5
+//The Data server is like the EngineServer, bridging the connection between the EngineClient and the EngineServer
+//Continued on EngineClient
+
+
+
 public class DataServer
     {
         // Boilerplate TODO: Change name of class

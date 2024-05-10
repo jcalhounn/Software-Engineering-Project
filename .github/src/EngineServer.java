@@ -8,6 +8,17 @@ import io.grpc.protobuf.services.ProtoReflectionService;
 public class EngineServer { // Boilerplate TODO: Change name of class
     private Server server;
 
+
+    //Explanation 3
+    //The port is created and matched by the UserClient
+    //the target object is then the same kind of target that the UserClient had, but is meant for the connection
+    //between the EngineServer DataServer
+    //the EngineManager object sets the ds and ec references to the EngineClient and EngineCompute
+    //which will be what the project references for all of its DataAPI and computation needs
+    //Once the references are set, the server connection is made and the manager object is then passed through to the
+    //ComputeAPIServerImpl class which will decode the Proto information that was sent by the UserClient
+    //Continued in ComputeAPIServerImpl
+
     private void start() throws IOException {
         /* The port on which the server should run */
         int port = 50051; // Boilerplate TODO: Consider changing the port (only one server per port)
@@ -55,6 +66,8 @@ public class EngineServer { // Boilerplate TODO: Change name of class
         }
     }
 
+
+    //Just starts the open server for channel connection
     public static void main(String[] args) throws Exception {
         EngineServer server = new EngineServer(); // Boilerplate TODO: Change name of class
         server.start();
