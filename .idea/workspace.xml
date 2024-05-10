@@ -7,7 +7,9 @@
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/src/EngineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/userProto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/userProto.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +62,7 @@
     "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
     "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
     "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Debug",
+    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Run",
     "Gradle.TestMultiUser.executor": "Run",
     "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -80,7 +82,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.UserClient">
+  <component name="RunManager" selected="Application.DataServer">
     <configuration name="DataServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataServer" />
       <module name="gradle-8.6.main" />
@@ -184,7 +186,7 @@
       <workItem from="1715035929830" duration="2968000" />
       <workItem from="1715193667818" duration="1087000" />
       <workItem from="1715195868335" duration="359000" />
-      <workItem from="1715197565782" duration="7723000" />
+      <workItem from="1715197565782" duration="12713000" />
     </task>
     <servers />
   </component>

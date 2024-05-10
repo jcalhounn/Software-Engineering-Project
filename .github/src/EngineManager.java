@@ -31,9 +31,11 @@ public class EngineManager implements ComputeAPI {
 
 	@Override
 	public ComputeResult compute(ComputeRequest request) {
+
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
-		
+
 		//compute GCD
+
 		List<Integer> dataIntegers = new ArrayList<Integer>();
 		integers.forEach(Integer -> {
 			dataIntegers.add(Integer);
@@ -42,6 +44,7 @@ public class EngineManager implements ComputeAPI {
 		int gcd = ec.getGCD(dataIntegers);
 
 		for (int val : integers) {
+
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());
 		}
 

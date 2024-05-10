@@ -33,8 +33,9 @@ public class EngineClient implements DataAPI{
     public Iterable<Integer> read(InputConfig input) {
         //TODO: User provided list will not work for this "(FileInputConfig)input).getFileName())" logic
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig)input).getFileName()).build();
-        UserProto.Page response;
+        UserProto.Page response = UserProto.Page.newBuilder().build();
         FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
+
 
 
         return InputConfig.visitInputConfig(input, fileConfig -> {
@@ -47,6 +48,7 @@ public class EngineClient implements DataAPI{
                 }
             };
         });
+
     }
 
 

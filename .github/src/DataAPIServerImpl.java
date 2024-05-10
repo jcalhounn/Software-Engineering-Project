@@ -39,6 +39,11 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
 
         Iterable<Integer> list = dataAPI.read(inputConfig);
         UserProto.Page page = UserProto.Page.newBuilder().build();
+        for (Iterator<Integer> iterator = list.iterator(); iterator.hasNext(); ) {
+                list = page.getResultsList();
+                iterator = list.iterator();
+        }
+
         list.forEach(page::getResults);
 
 //        for(int i : list) {
