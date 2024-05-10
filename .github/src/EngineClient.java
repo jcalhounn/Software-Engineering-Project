@@ -25,7 +25,7 @@ public class EngineClient implements DataAPI{
     //now, the line is
     //EngineManager manager = new EngineManager(new EngineClient(channel),new EngineCompute());
     //this is why the EngineClient must behave like the DataAPIImpl
-    //the method appendSingleResult currently works and I am struggling on the read method
+    //I believe the method appendSingleResult currently works but may have errors so double check and I am struggling on the read method
     //Reference emails with the Professor.
     //My current interpretation is that the Engine client needs to be able to determine what the current page number
     //is and then read out the next 100 numbers on that page or until null on that page and return those numbers.
@@ -49,9 +49,15 @@ public class EngineClient implements DataAPI{
     public Iterable<Integer> read(InputConfig input) {
 
         //TODO: If the User provided a list it will not work for this "(FileInputConfig)input).getFileName())" logic
-//        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).build();
-//        UserProto.Page response = UserProto.Page.newBuilder().build();
-//        //FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).build();
+
+        UserProto.Page response = blockingStub.read(inputConfig);
+        int value = response.getResults();
+        Iterable<Integer> list = new ArrayList<Integer>(value);
+    return list;
+//
+
+//          FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
 //        Iterable<Integer> list = new ArrayList<Integer>();
 //        response = blockingStub.read(inputConfig);
 //
@@ -59,7 +65,7 @@ public class EngineClient implements DataAPI{
 //        for (int i = ((pageNumber * 100) - 100); i < 99 * pageNumber; i++) {
 //
 
-        return InputConfig.visitInputConfig(input, fileConfig -> {
+        /*return InputConfig.visitInputConfig(input, fileConfig -> {
 
                 // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
                 return new Iterable<Integer>() {
@@ -68,7 +74,7 @@ public class EngineClient implements DataAPI{
                         return getFileBasedIterator(fileConfig.getFileName());
                     }
                 };
-            });
+            });*/
         }
 
 

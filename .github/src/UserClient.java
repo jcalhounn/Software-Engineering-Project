@@ -63,7 +63,7 @@ public class UserClient {
         //TODO: Move the UserProto. variables to here so we can scan user inputs and set them here.
 
 
-        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+        String target = "localhost:50054";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();

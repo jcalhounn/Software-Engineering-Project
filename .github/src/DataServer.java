@@ -19,7 +19,7 @@ public class DataServer
 
         private void start() throws IOException {
             /* The port on which the server should run */
-            int port = 50052; // Boilerplate TODO: Consider changing the port (only one server per port)
+            int port = 50053; // Boilerplate TODO: Consider changing the port (only one server per port)
 
 
             server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())

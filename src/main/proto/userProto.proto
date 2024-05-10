@@ -11,7 +11,7 @@ service DataAPI{
 
 message Page{
   //have engine manager loop through pages
-  optional string results=1;//EX: 100 at a time
+  optional int32 results=1;//EX: 100 at a time
   optional int32 currentPage=2;
 
 }
