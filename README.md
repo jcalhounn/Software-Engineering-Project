@@ -23,3 +23,7 @@ https://github.com/jcalhounn/Software-Engineering-Project/blob/main/.github/test
 
 To gain a significant CPU Usage improvement, we used one less for loop inside of the EngineManager, allowing for the code to iterate less times through the
 Iterable<Integer> list that comes in from the inputConfig. This gives the CPU less tasks to complete and lowering the usage overall.
+
+Our 5 whys documentation 
+https://github.com/jcalhounn/Software-Engineering-Project/blob/main/documentation/5whys.txt
+This is why we seek out help from our teacher since it allows us to learn quicker!
