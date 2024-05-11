@@ -152,14 +152,11 @@ public class UserClient extends JFrame {
             // Check for Errors
             if (!isValidInputFile(inputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid INPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(!isValidDelimiter(delim)) {
+            } else if(!isValidDelimiter(delim)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid delimiter length or is an integer.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(!isValidOutputFile(outputFileName)) {
+            } else if(!isValidOutputFile(outputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid OUTPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            } else {
                 currentState = State.COMPLETE_MENU;
                 outputFile = outputFileName;
                 inputFile = inputFileName;
@@ -300,7 +297,6 @@ public class UserClient extends JFrame {
                 addStartMenu();
                 startButton.setVisible(true);
                 exitButton.setVisible(true);
-
                 break;
 
             case FILE_MENU:
@@ -312,7 +308,6 @@ public class UserClient extends JFrame {
                 backButton.setVisible(true);
                 inputFilePrompt.setVisible(true);
                 delimPrompt.setVisible(true);
-
                 break;
 
             case COMPLETE_MENU:
@@ -320,7 +315,6 @@ public class UserClient extends JFrame {
                 againButton.setVisible(true);
                 exitButton.setVisible(true);
                 backButton.setVisible(true);
-
                 break;
         }
 
