@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +8,7 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+
 
 import javax.swing.*;
 
@@ -46,9 +48,11 @@ public class UserClient extends JFrame {
 
         //TODO: user fills out input output configs and delimiter attached through GUI
 
+
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(inputFile).build();
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(outputFile).build();
         UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter + "").build();
+
         UserProto.ComputeResult response;
         try {
             response = blockingStub.compute(request);
@@ -71,6 +75,7 @@ public class UserClient extends JFrame {
     //The channel is then built between the client and server.
     //we then call the request method on our UserClient object
     //Continued above.
+
 
 
 
@@ -363,11 +368,13 @@ public class UserClient extends JFrame {
 
     public static void main(String[] args) throws Exception {
 
+
         String target = "localhost:50054";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
+
 
             UserClient client = new UserClient(channel);
             client.setVisible(true);
@@ -377,7 +384,6 @@ public class UserClient extends JFrame {
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }
-
 
     }
 }
