@@ -23,7 +23,7 @@ public class EngineAPIIntegrationTest {
 
         //using the variable-length int constructor (int...) to avoid having to create an array and 
         //manually enter these values. (this makes it easier to test over and over)
-        InputConfigTestImpl input = new InputConfigTestImpl(5,10,25,50);
+        InputConfigTestImpl input = new InputConfigTestImpl(921231234, 423452123, 678954234, 523948572);
 
         OutputConfigTestImpl output = new OutputConfigTestImpl();
 
@@ -39,25 +39,20 @@ public class EngineAPIIntegrationTest {
         Assert.assertEquals(ComputeResult.SUCCESS, result);
 
         //GCD calculation returns properly
-       // Assert.assertEquals(1,engine.getGCD(input.getInputs()));
-        
+        // Assert.assertEquals(1,engine.getGCD(input.getInputs()));
+
         //now we check if the computation really worked! 
         //OUR expected result will be (each number in hex + GCF in hex)
         List<String> expected = new ArrayList<>();
-        expected.add("0x5");
-        expected.add("0xA");
-        expected.add("0x19");
-        expected.add("0x32");
-        expected.add("0x5");
+        expected.add("0x36E8DF82");
+        expected.add("0x193D5DDB");
+        expected.add("0x287804FA");
+        expected.add("0x1F3AD21C");
+        expected.add("0x1");
 
         //if everything worked, we should have written out these results to the output
         Assert.assertEquals(expected, output.getOutputMutable());
-        
-
-
-
-
 
     }
-    
+
 }
