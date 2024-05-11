@@ -316,6 +316,8 @@ public class UserClient extends JFrame {
                 exitButton.setVisible(true);
                 backButton.setVisible(true);
                 break;
+
+            default:
         }
 
     }
