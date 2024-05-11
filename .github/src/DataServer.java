@@ -12,8 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
-public class DataServer
-    {
+public class DataServer {
         // Boilerplate TODO: Change name of class
         private Server server;
 
