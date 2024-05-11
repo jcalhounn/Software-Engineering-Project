@@ -2,9 +2,15 @@ public class ComputeAPIServerImpl extends ComputeAPIGrpc.ComputeAPIImplBase {
 
     EngineManager engineManager;
 
+
     public ComputeAPIServerImpl(EngineManager engineManager) {
         this.engineManager = engineManager;
     }
+    //Explanaition 4
+    //This compute method will convert the proto datatypes into the actual datatypes that the engine needs to compute
+    //anything. Once the engine manager makes its changes it will respond with a success or failure.
+    //This success or failure is then turned into proto readable type and then sent back
+    //Continued on DataServer
 
     public void compute(UserProto.ComputeRequest request,
                          io.grpc.stub.StreamObserver<UserProto.ComputeResult> responseObserver) {
