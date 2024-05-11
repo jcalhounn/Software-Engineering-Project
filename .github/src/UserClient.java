@@ -21,8 +21,8 @@ public class UserClient extends JFrame {
     private enum State {
         START_MENU, FILE_MENU, COMPLETE_MENU, ERROR_MENU
     }
-    private final ComputeAPIGrpc.ComputeAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
+    private final ComputeAPIGrpc.ComputeAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
     private UserClient.State currentState;
     private final JButton startButton, exitButton, delimButton, againButton, backButton, completeButton;
@@ -36,27 +36,17 @@ public class UserClient extends JFrame {
 
     private CountDownLatch latch;
 
-    //Explaination 2
-    //We need to send our code across the network and this process is buffered by a protocol file
-    //this means that the data types that our project expects to see is defined in the proto file
-    //To send our actual request through the compute method, the proto is structured in a way that
-    //states what data type will be expected as a parameter and as the return type
-    //The blockingStub.compute(request) is an rpc service defined in the proto, so it needs proto parameters
-    //these parameters are set through the initialization of inputConfig,and outputConfig, and explicitly for delimiter
-    //this proto readable request is then sent across the channel to the EngineServer
-    //Continued on EngineServer
-
     public void request() {
 
-        //TODO: user fills out input output configs and delimiter attached through GUI
-
-
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(inputFile).build();
-        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(outputFile).build();
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(".github/files/" + inputFile).build();
+        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(".github/files/" + outputFile).build();
         UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter+"").build();
+System.out.println(inputFile + "," + outputFile + "," + delimiter);
 
         UserProto.ComputeResult response;
+
         try {
+
             response = blockingStub.compute(request);
 
         } catch (StatusRuntimeException e) {
@@ -70,17 +60,6 @@ public class UserClient extends JFrame {
             System.out.println("Compute Success!"); //+ response.getOrderNumber());
         }
     }
-
-
-    //EXPLANATION 1
-    //UserClient wants to make a compute request across a "network"
-    //To do this, we host a server on "EngineServer"
-    //To connect to this server we use the target address "localhost:50051" that matches up to the port declared in EngineSerer
-    //The channel is then built between the client and server.
-    //we then call the request method on our UserClient object
-    //Continued above.
-
-
 
 
     public UserClient(Channel channel, CountDownLatch latch) {
@@ -174,7 +153,7 @@ public class UserClient extends JFrame {
                 inputFile = inputFileName;
                 delimiter = delim.charAt(0);
 
-                request();
+                this.request();
 
                 updateVisibility();
                 addCompleteScreen();

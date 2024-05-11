@@ -18,26 +18,24 @@ public class DataAPIImpl implements DataAPI  {
 			return new Iterable<Integer>() {
 				@Override
 				public Iterator<Integer> iterator() {
-					return getFileBasedIterator(fileConfig.getFileName());
+					return getFileBasedIterator(fileConfig.getFileName(), delimiter);
 				}
 			};
 		});
     }
-    
-    private Iterator<Integer> getFileBasedIterator(String fileName) {
+
+    private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
 		try {
 			return new Iterator<Integer>() {
-				// A Scanner is also fine to use, but has an important difference as we add threads:
-				// BufferedReader is by default thread-safe, but Scanner is not (like a synchronizedList vs ArrayList)
-				// BufferedReader is also slightly more efficient at large file reads (larger buffer than Scanner),
-				// but by default breaks at newlines rather than all whitespace, and doesn't parse the
-				// input as it goes
+
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
 				String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
+
 				boolean closed = false;
 
 				@Override
 				public Integer next() {
+
 					// this particular iterator reads the first line during the (implicit) constructor, so line is already
 					// set up for the next integer
 					int result = Integer.parseInt(line);
@@ -58,16 +56,16 @@ public class DataAPIImpl implements DataAPI  {
 				public boolean hasNext() {
 					return line != null;
 				}
-				
+
 				/*
 				 * finalize() is a method on Object, much like toString or equals. It's called when an object is garbage collected, and is used as
-				 * a final cleanup step for resources. It's a bit fragile - it isn't guaranteed to always be called, or be called at any specific time - 
+				 * a final cleanup step for resources. It's a bit fragile - it isn't guaranteed to always be called, or be called at any specific time -
 				 * but unless a cleanup is particularly critical, it's generally sufficient as a back-stop against weird circumstances. In this case,
 				 * we would at worst leak a read-lock file handle, which is NBD and certainly not worth architecting a larger solution around (honestly,
 				 * finalize() might even be overkill in this situation).
 				 */
 
-			/*	public void finalize() {
+			/*public void finalize() {
 					if (!closed) {
 						try {
 							buff.close();

@@ -7,9 +7,9 @@ public class ComputeRequestImpl implements ComputeRequest {
 
     public ComputeRequestImpl(String input, char delimiter, String output) {
 
-        this.input = new FileInputConfig(input);
+        this.input = new FileInputConfig(input, delimiter);
         this.delimiter = delimiter;
-        this.output = new FileOutputConfig(output);
+        this.output = new FileOutputConfig(output, delimiter);
 
 
     }

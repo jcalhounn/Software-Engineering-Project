@@ -29,7 +29,7 @@ public class DataAPISmokeTest {
 
         File file = new File("dataStoreTest.smokeTestWrite.txt.temp");
 		file.deleteOnExit();
-		OutputConfig outputConfig = new FileOutputConfig(file.getCanonicalPath());
+		OutputConfig outputConfig = new FileOutputConfig(file.getCanonicalPath(), ';');
 		
 		DataAPI dataStore = new DataAPIImpl();
 

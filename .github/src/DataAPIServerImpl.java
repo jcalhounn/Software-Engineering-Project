@@ -1,4 +1,3 @@
-import java.util.Iterator;
 
 public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
 
@@ -13,7 +12,7 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
     public void appendSingleResult(UserProto.Output request,
                                     io.grpc.stub.StreamObserver<UserProto.DataWriteResult> responseObserver) {
 
-        FileOutputConfig outputConfig = new FileOutputConfig(request.getOutput().getFileName());
+        FileOutputConfig outputConfig = new FileOutputConfig(request.getOutput().getFileName(), request.getDelimiter().charAt(0));
         DataWriteResult writeResult = dataAPI.appendSingleResult(outputConfig,request.getResult(),request.getDelimiter().charAt(0));
 
         //TODO: Convert writeResult to Proto
@@ -35,7 +34,6 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
         //TODO: Convert UserProto.InputConfig to InputConfig and return using stream observer on completed *Reference the ComputeAPIServerImpl
         FileInputConfig inputConfig = new FileInputConfig(request.getFileName());
         Iterable<Integer> list = dataAPI.read(inputConfig);
-
 
         UserProto.List results = UserProto.List.newBuilder().addAllResults(list).build();
 

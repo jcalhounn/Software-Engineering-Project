@@ -65,3 +65,7 @@ message Output{
   optional string result=2; //repeated is needed if sending a list
   optional string delimiter=3;
 }
+message Input{
+
+  optional string delimiter=1;
+}
