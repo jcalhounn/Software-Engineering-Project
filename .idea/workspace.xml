@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/src/DataServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/UserClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/userProto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/userProto.proto" afterDir="false" />
     </list>
@@ -48,7 +48,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -63,7 +63,7 @@
     "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
     "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
     "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Debug",
+    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Run",
     "Gradle.TestMultiUser.executor": "Run",
     "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -189,6 +189,7 @@
       <workItem from="1715195868335" duration="359000" />
       <workItem from="1715197565782" duration="12713000" />
       <workItem from="1715343060940" duration="9712000" />
+      <workItem from="1715373336880" duration="5709000" />
     </task>
     <servers />
   </component>
@@ -214,6 +215,10 @@
           <line>43</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

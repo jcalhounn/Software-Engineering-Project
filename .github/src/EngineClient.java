@@ -1,8 +1,6 @@
 import io.grpc.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +13,7 @@ import io.grpc.StatusRuntimeException;
 
 import javax.xml.crypto.Data;
 
-public class EngineClient implements DataAPI{
+public class EngineClient implements DataAPI {
 
     //EXPLANATION 6
     //This client is meant to act like the class DataAPIImpl
@@ -45,39 +43,27 @@ public class EngineClient implements DataAPI{
     //        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName("test.txt").build();
     //        UserProto.Page response;
 
-    @Override
+
     public Iterable<Integer> read(InputConfig input) {
 
         //TODO: If the User provided a list it will not work for this "(FileInputConfig)input).getFileName())" logic
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).build();
 
-        UserProto.Page response = blockingStub.read(inputConfig);
-        int value = response.getResults();
-        Iterable<Integer> list = new ArrayList<Integer>(value);
-    return list;
-//
+        UserProto.List response = blockingStub.read(inputConfig);
+        return response.getResultsList();
 
-//          FileInputConfig fileInputConfig = new FileInputConfig(inputConfig.getFileName());
-//        Iterable<Integer> list = new ArrayList<Integer>();
-//        response = blockingStub.read(inputConfig);
-//
-//        int pageNumber = response.getCurrentPage();
-//        for (int i = ((pageNumber * 100) - 100); i < 99 * pageNumber; i++) {
-//
+        /* Use the visitor pattern so that we can easily and safely add additional config types in the future
+        return InputConfig.visitInputConfig(input, fileConfig -> {
 
-        /*return InputConfig.visitInputConfig(input, fileConfig -> {
-
-                // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
-                return new Iterable<Integer>() {
-                    @Override
-                    public Iterator<Integer> iterator() {
-                        return getFileBasedIterator(fileConfig.getFileName());
-                    }
-                };
-            });*/
-        }
-
-
+            // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
+            return new Iterable<Integer>() {
+                @Override
+                public Iterator<Integer> iterator() {
+                    return getFileBasedIterator(fileConfig.getFileName());
+                }
+            };
+        });*/
+    }
 
 
     private Iterator<Integer> getFileBasedIterator(String fileName) {
@@ -129,23 +115,30 @@ public class EngineClient implements DataAPI{
         }
     }
 
-//
-//        return InputConfig.visitInputConfig(input, fileConfig -> {
-//
-//            // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
-//            return new Iterable<Integer>() {
-//                @Override
-//                public Iterator<Integer> iterator() {
-//                    return getFileBasedIterator(fileInputConfig.getFileName());
-//                }
-//            };
-//        });
-//
-//    }
+    private void writeToFile(String fileName, String line) {
+        // use try-with-resources syntax to automatically close the file writer
+        // use the append-friendly version of the constructor
+        try (FileWriter writer = new FileWriter(new File(fileName), true)) {
+            writer.append(line);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-
-    @Override
     public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
+        OutputConfig.visitOutputConfig(output, config -> {
+            writeToFile(config.getFileName(), result + delimiter);
+        });
+
+        /*
+         * Using lambda syntax to create an instance of WriteResult. This is an alternative to the ComputeResult approach of providing
+         * constants for success/failure.
+         */
+        return () -> DataWriteResult.WriteResultStatus.SUCCESS;
+    }
+
+    /*public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
+
 
         //TODO: Convert Parameters into "UserProto." Versions and call appendSingleResult with blockingStub
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(((FileOutputConfig)output).getFileName()).build();
@@ -159,5 +152,6 @@ public class EngineClient implements DataAPI{
         }
         else
             return DataWriteResult.FAILURE;
-    }
+    }*/
+
 }

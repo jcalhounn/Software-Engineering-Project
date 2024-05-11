@@ -16,7 +16,6 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
         FileOutputConfig outputConfig = new FileOutputConfig(request.getOutput().getFileName());
         DataWriteResult writeResult = dataAPI.appendSingleResult(outputConfig,request.getResult(),request.getDelimiter().charAt(0));
 
-
         //TODO: Convert writeResult to Proto
         int value=writeResult.getStatus().ordinal();
         UserProto.DataWriteResult.WriteResultStatus protoWriteResult =
@@ -31,32 +30,16 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
     }
 
     public void read(UserProto.InputConfig request,
-                      io.grpc.stub.StreamObserver<UserProto.Page> responseObserver) {
+                     io.grpc.stub.StreamObserver<UserProto.List> responseObserver){
 
         //TODO: Convert UserProto.InputConfig to InputConfig and return using stream observer on completed *Reference the ComputeAPIServerImpl
         FileInputConfig inputConfig = new FileInputConfig(request.getFileName());
-
-
-        UserProto.Page page = UserProto.Page.newBuilder().build();
-        int pageNumber = page.getCurrentPage();
         Iterable<Integer> list = dataAPI.read(inputConfig);
 
-        for(int i=((pageNumber*100) - 100);i<99*pageNumber;i++){
 
+        UserProto.List results = UserProto.List.newBuilder().addAllResults(list).build();
 
-        }
-
-
-//        for (Iterator<Integer> iterator = list.iterator(); iterator.hasNext(); ) {
-//                iterator = list.iterator();
-//        }
-//
-//        list.forEach(page::getResults);
-
-//        for(int i : list) {
-//            page.getResults(i);
-//        }
-        responseObserver.onNext(page);
+        responseObserver.onNext(results);
         responseObserver.onCompleted();
     }
 
