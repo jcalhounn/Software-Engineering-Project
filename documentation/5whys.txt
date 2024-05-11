@@ -1,0 +1,11 @@
+5 Why's
+
+Problem: Implementing Protocol Buffers.
+1. Why did you struggle to implement Protocol Buffers?
+2. A: This was our first time being exposed to the Concepts.
+3. Why did this cause issues?
+4. A: We were not familiar with the how the process is used across a server/channel system. 
+We went to the teacher on many occasions outside of class time to learn more.
+5. Why didn't you use more resources to help you learn? 
+6. A: The teacher was very beneficial to our understanding and knew specifically our context for the 
+use of Protocol Buffers and over time we learned very well.
