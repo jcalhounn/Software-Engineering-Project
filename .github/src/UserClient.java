@@ -41,7 +41,6 @@ public class UserClient extends JFrame {
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(".github/files/" + inputFile).build();
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(".github/files/" + outputFile).build();
         UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter+"").build();
-System.out.println(inputFile + "," + outputFile + "," + delimiter);
 
         UserProto.ComputeResult response;
 
@@ -140,6 +139,7 @@ System.out.println(inputFile + "," + outputFile + "," + delimiter);
             String outputFileName = outputFileField.getText().trim();
             String delim = delimField.getText().trim();
 
+
             // Check for Errors
             if (!isValidInputFile(inputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid INPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -152,12 +152,14 @@ System.out.println(inputFile + "," + outputFile + "," + delimiter);
                 outputFile = outputFileName;
                 inputFile = inputFileName;
                 delimiter = delim.charAt(0);
+                System.out.println(delimiter);
 
-                this.request();
+
 
                 updateVisibility();
                 addCompleteScreen();
 
+                request();
                 latch.countDown(); // allow shutdown
             }
         });

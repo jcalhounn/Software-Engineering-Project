@@ -38,7 +38,8 @@ message ComputeResult{
 message InputConfig{
    optional string FileName=1;
    repeated int32 list=2;
-   optional int32 singleData=3;
+   optional string delimiter =3;
+   optional int32 singleData=4;
 }
 
 message OutputConfig{
@@ -64,8 +65,4 @@ message Output{
   optional OutputConfig output=1;
   optional string result=2; //repeated is needed if sending a list
   optional string delimiter=3;
-}
-message Input{
-
-  optional string delimiter=1;
 }

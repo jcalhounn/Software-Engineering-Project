@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/src/ComputeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/ComputeRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/files/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.github/files/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/DataAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/DataServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/FileInputConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/FileInputConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/FileOutputConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/FileOutputConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/test/ComputeRequestImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/test/ComputeRequestImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/test/DataAPISmokeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/test/DataAPISmokeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/userProto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/userProto.proto" afterDir="false" />
     </list>
@@ -58,7 +54,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -76,8 +72,8 @@
     "Gradle.BenchmarkTest.engineManagerTest.executor": "Run",
     "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
     "Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor": "Run",
-    "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Debug",
-    "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Debug",
+    "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
+    "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
     "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Debug",
     "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -101,7 +97,7 @@
       <recent name="C:\Users\jorda\OneDrive\Documents\GitHub\Software-Engineering-Project\.github\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserClient">
+  <component name="RunManager" selected="Application.DataServer">
     <configuration name="DataServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataServer" />
       <module name="gradle-8.6.main" />
@@ -210,6 +206,7 @@
       <workItem from="1715395517274" duration="3524000" />
       <workItem from="1715399926126" duration="3935000" />
       <workItem from="1715440326628" duration="7398000" />
+      <workItem from="1715454379676" duration="4579000" />
     </task>
     <servers />
   </component>
@@ -234,13 +231,17 @@
           <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
           <option name="timeStamp" value="8" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint enabled="true" log-message="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="9" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint enabled="true" log-message="true" type="java-exception">
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="10" />
+        </breakpoint>
+        <breakpoint enabled="true" log-message="true" type="java-exception">
+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="17" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/.github/src/DataServer.java</url>
@@ -248,29 +249,14 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/.github/src/DataServer.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/.github/src/DataAPIImpl.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/.github/src/DataAPIImpl.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/.github/src/DataServer.java</url>
-          <line>32</line>
-          <properties method="run">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/.github/src/DataAPIImpl.java</url>
-          <line>31</line>
-          <properties field="line" />
-          <option name="timeStamp" value="15" />
+          <line>15</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

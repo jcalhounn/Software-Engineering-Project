@@ -8,11 +8,12 @@ public class FileInputConfig implements InputConfig{
         this.fileName  = fileName;
         this.delimiter = delimiter;
     }
+    public char getDelimiter() {return delimiter; }
 
     public String getFileName(){
         return fileName;
     }
 
-    public char getDelimiter() {return delimiter; }
+
 }
 //done

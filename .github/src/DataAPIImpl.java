@@ -13,12 +13,13 @@ public class DataAPIImpl implements DataAPI  {
     public Iterable<Integer> read(InputConfig input) {
 		// Use the visitor pattern so that we can easily and safely add additional config types in the future
 		return InputConfig.visitInputConfig(input, fileConfig -> {
-			
+			System.out.println("Delim:"+ fileConfig.getDelimiter());
 			// Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
 			return new Iterable<Integer>() {
 				@Override
 				public Iterator<Integer> iterator() {
-					return getFileBasedIterator(fileConfig.getFileName(), delimiter);
+
+					return getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
 				}
 			};
 		});
@@ -29,6 +30,7 @@ public class DataAPIImpl implements DataAPI  {
 			return new Iterator<Integer>() {
 
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
+
 				String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
 
 				boolean closed = false;
