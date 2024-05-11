@@ -31,7 +31,9 @@ public class EngineManager implements ComputeAPI {
 
 	@Override
 	public ComputeResult compute(ComputeRequest request) {
+
 		Iterable<Integer> integers = ds.read(request.getInputConfig());
+
 		int gcd = Integer.MIN_VALUE;
 		boolean first = true;
 
@@ -44,6 +46,7 @@ public class EngineManager implements ComputeAPI {
 		/****REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE****/
 
 		for (int val : integers) {
+
 			if(first) {
 				gcd = val;
 				first = false;

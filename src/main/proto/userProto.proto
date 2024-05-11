@@ -1,0 +1,67 @@
+//Service block for ComputeAPI that the User supplies data or a file to
+service ComputeAPI{
+  rpc compute (ComputeRequest) returns (ComputeResult){}
+}
+
+service DataAPI{
+
+  rpc appendSingleResult (OutputConfig) returns (DataWriteResult){}
+  rpc read (InputConfig) returns (List){}//Change data return type to a Page rather than an Iterable<Integer>
+}
+
+message List{
+  //have engine manager loop through pages
+  repeated int32 results=1;//EX: 100 at a time
+//  optional int32 currentPage=2;
+}
+
+//message ComputeRequest
+message ComputeRequest{
+    optional InputConfig input=1;
+    optional OutputConfig output =2;
+    optional string delimiter=3;
+
+}
+
+message ComputeResult{
+
+  optional ComputeResultStatus status=1;
+  enum ComputeResultStatus{
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    FAILURE = 2;
+    NOT_AN_INTEGER = 3;
+
+  }
+}
+
+message InputConfig{
+   optional string FileName=1;
+   repeated int32 list=2;
+   optional int32 singleData=3;
+}
+
+message OutputConfig{
+   optional string FileName=1;
+   repeated int32 list=2;
+   optional int32 singleData=3;
+
+}
+
+message DataWriteResult{
+
+  optional WriteResultStatus status=1;
+  enum WriteResultStatus{
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    FAILURE = 2;
+  }
+}
+
+
+message Output{
+
+  optional OutputConfig output=1;
+  optional string result=2; //repeated is needed if sending a list
+  optional string delimiter=3;
+}
