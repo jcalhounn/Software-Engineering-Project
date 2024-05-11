@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.io.File;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.Channel;
@@ -33,6 +34,7 @@ public class UserClient extends JFrame {
     private String outputFile;
     private char delimiter;
 
+    private CountDownLatch latch;
 
     //Explaination 2
     //We need to send our code across the network and this process is buffered by a protocol file
@@ -51,13 +53,15 @@ public class UserClient extends JFrame {
 
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(inputFile).build();
         UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(outputFile).build();
-        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter + "").build();
+        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter+"").build();
 
         UserProto.ComputeResult response;
         try {
             response = blockingStub.compute(request);
+
         } catch (StatusRuntimeException e) {
             e.printStackTrace();
+            System.out.println("Program error");
             return;
         }
         if (response==null) {
@@ -79,8 +83,11 @@ public class UserClient extends JFrame {
 
 
 
-    public UserClient(Channel channel) {
+    public UserClient(Channel channel, CountDownLatch latch) {
         super("Computation");
+
+        this.latch = latch;
+
         blockingStub = ComputeAPIGrpc.newBlockingStub(channel);  // Boilerplate TODO: update to appropriate blocking stub
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,9 +173,13 @@ public class UserClient extends JFrame {
                 outputFile = outputFileName;
                 inputFile = inputFileName;
                 delimiter = delim.charAt(0);
+
+                request();
+
                 updateVisibility();
                 addCompleteScreen();
-                this.request();
+
+                latch.countDown(); // allow shutdown
             }
         });
     }
@@ -365,7 +376,6 @@ public class UserClient extends JFrame {
     }
 
 
-
     public static void main(String[] args) throws Exception {
 
 
@@ -374,12 +384,12 @@ public class UserClient extends JFrame {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
+            CountDownLatch latch = new CountDownLatch(1);
 
-
-            UserClient client = new UserClient(channel);
+            UserClient client = new UserClient(channel, latch);
             client.setVisible(true);
 
-            //client.request();
+            latch.await(); //prevents shut down until grcp is called
 
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
