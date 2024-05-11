@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
+
       <change beforePath="$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/userProto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/userProto.proto" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +32,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="gradle-8.6" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -60,52 +67,82 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+
+    "Attach to process.pid 15512.executor": "ProcessAttachDebug",
+    "Attach to process.pid 4540.executor": "ProcessAttachDebug",
+    "Gradle.BenchmarkTest.engineComputeTest.executor": "Run",
+    "Gradle.BenchmarkTest.engineManagerTest.executor": "Run",
     "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
-    "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Run",
-    "Gradle.TestMultiUser.executor": "Run",
+    "Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor": "Run",
     "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Assignment6-Protos",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "Assignment7",
+
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.UserClient">
-    <configuration name="DataServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DataServer" />
-      <module name="gradle-8.6.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.BenchmarkTest.engineManagerTest">
+    <configuration name="BenchmarkTest.engineComputeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;BenchmarkTest.engineComputeTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="EngineServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="EngineServer" />
-      <module name="gradle-8.6.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="BenchmarkTest.engineManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;BenchmarkTest.engineManagerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="UserClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UserClient" />
-      <module name="gradle-8.6.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestMultiUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ComputeAPISmokeTest.smokeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -129,7 +166,31 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'gradle-8.6.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="EngineAPIIntegrationTest.testComputeWorkflow" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;EngineAPIIntegrationTest.testComputeWorkflow&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="EngineComputeBenchTest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -143,7 +204,7 @@
             <option value=":test" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="-Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=10001" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
@@ -151,13 +212,22 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Gradle.BenchmarkTest.engineComputeTest" />
+      <item itemvalue="Gradle.BenchmarkTest.engineManagerTest" />
+      <item itemvalue="Gradle.EngineAPIIntegrationTest.testComputeWorkflow" />
+      <item itemvalue="Gradle.ComputeAPISmokeTest.smokeTest" />
+      <item itemvalue="Gradle.EngineComputeBenchTest'" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DataServer" />
-        <item itemvalue="Application.EngineServer" />
-        <item itemvalue="Application.UserClient" />
-        <item itemvalue="Gradle.Tests in 'gradle-8.6.test'" />
-        <item itemvalue="Gradle.TestMultiUser" />
+
+        <item itemvalue="Gradle.BenchmarkTest.engineManagerTest" />
+        <item itemvalue="Gradle.BenchmarkTest.engineComputeTest" />
+        <item itemvalue="Gradle.EngineAPIIntegrationTest.testComputeWorkflow" />
+        <item itemvalue="Gradle.EngineComputeBenchTest'" />
+        <item itemvalue="Gradle.ComputeAPISmokeTest.smokeTest" />
+
       </list>
     </recent_temporary>
   </component>
@@ -178,18 +248,10 @@
       <option name="presentableId" value="Default" />
       <updated>1712685472070</updated>
       <workItem from="1712685473436" duration="2399000" />
-      <workItem from="1714070565124" duration="2734000" />
-      <workItem from="1714404095570" duration="1323000" />
-      <workItem from="1714856952859" duration="4023000" />
-      <workItem from="1714952839309" duration="403000" />
-      <workItem from="1714953778560" duration="4412000" />
-      <workItem from="1715017917780" duration="1574000" />
-      <workItem from="1715035929830" duration="2968000" />
-      <workItem from="1715193667818" duration="1087000" />
-      <workItem from="1715195868335" duration="359000" />
-      <workItem from="1715197565782" duration="12713000" />
-      <workItem from="1715343060940" duration="9712000" />
-      <workItem from="1715373336880" duration="5709000" />
+
+      <workItem from="1714580833907" duration="351000" />
+      <workItem from="1714587647985" duration="4120000" />
+
     </task>
     <servers />
   </component>
