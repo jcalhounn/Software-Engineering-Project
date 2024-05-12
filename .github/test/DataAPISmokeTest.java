@@ -15,7 +15,7 @@ public class DataAPISmokeTest {
         //InputConfig inputConfig = Mockito.mock(InputConfig.class);
         
         //Professor's sample
-        InputConfig inputConfig = new FileInputConfig(file.getCanonicalPath());
+        InputConfig inputConfig = new FileInputConfig(file.getCanonicalPath(),',');
         DataAPI dataAPI = new DataAPIImpl();
         
         Assert.assertEquals(false, dataAPI.read(inputConfig).iterator().hasNext());
