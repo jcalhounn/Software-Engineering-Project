@@ -152,9 +152,6 @@ public class UserClient extends JFrame {
                 outputFile = outputFileName;
                 inputFile = inputFileName;
                 delimiter = delim.charAt(0);
-                System.out.println(delimiter);
-
-
 
                 updateVisibility();
                 addCompleteScreen();

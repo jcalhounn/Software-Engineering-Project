@@ -13,13 +13,15 @@ public class DataAPIImpl implements DataAPI  {
     public Iterable<Integer> read(InputConfig input) {
 		// Use the visitor pattern so that we can easily and safely add additional config types in the future
 		return InputConfig.visitInputConfig(input, fileConfig -> {
-			System.out.println("Delim:"+ fileConfig.getDelimiter());
+			System.out.println( fileConfig.getDelimiter() + " " + "name:"+ fileConfig.getFileName());
+
 			// Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
 			return new Iterable<Integer>() {
 				@Override
 				public Iterator<Integer> iterator() {
-
+					System.out.println( fileConfig.getDelimiter() + " " + "name:"+ fileConfig.getFileName());
 					return getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
+
 				}
 			};
 		});
@@ -30,53 +32,73 @@ public class DataAPIImpl implements DataAPI  {
 			return new Iterator<Integer>() {
 
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
-
-				String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
-
+				int nextInt = -1;
 				boolean closed = false;
+
+
+				private boolean readNextInt() throws IOException {
+					System.out.println("read:" + buff.read());
+					System.out.println("read:" + buff.read());
+					StringBuilder sb = new StringBuilder();
+					int nextChar;
+
+					while ((nextChar = buff.read()) != -1) {
+						if ((char) nextChar == delimiter || (char) nextChar == ' ') {
+							if (!sb.isEmpty()) {
+								nextInt = Integer.parseInt(sb.toString());
+								return true;
+							}
+						} else if (Character.isDigit(nextChar)) {
+							sb.append((char) nextChar);
+						} else {
+
+							throw new RuntimeException("Invalid character in file: " + (char) nextChar);
+						}
+
+					}
+					if (!sb.isEmpty()) {
+						nextInt = Integer.parseInt(sb.toString());
+						return true;
+					}
+					return false;
+				}
+
+				{
+					if (!readNextInt()) {
+						buff.close();
+						closed = true;
+					}
+				}
 
 				@Override
 				public Integer next() {
-
-					// this particular iterator reads the first line during the (implicit) constructor, so line is already
-					// set up for the next integer
-					int result = Integer.parseInt(line);
+					int result = nextInt;
 					try {
-						line = buff.readLine();
-						if (!hasNext()) {
+						if (!readNextInt()) {
 							buff.close();
 							closed = true;
 						}
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
-					
 					return result;
 				}
 
 				@Override
 				public boolean hasNext() {
-					return line != null;
+					return nextInt != -1;
 				}
 
-				/*
-				 * finalize() is a method on Object, much like toString or equals. It's called when an object is garbage collected, and is used as
-				 * a final cleanup step for resources. It's a bit fragile - it isn't guaranteed to always be called, or be called at any specific time -
-				 * but unless a cleanup is particularly critical, it's generally sufficient as a back-stop against weird circumstances. In this case,
-				 * we would at worst leak a read-lock file handle, which is NBD and certainly not worth architecting a larger solution around (honestly,
-				 * finalize() might even be overkill in this situation).
-				 */
-
-			/*public void finalize() {
-					if (!closed) {
-						try {
-							buff.close();
-							closed = true;
-						} catch (IOException e) {
-							throw new RuntimeException(e);
-						}
-					}
-				}*/
+            /*public void finalize() {
+                if (!closed) {
+                    try {
+                        buff.close();
+                        closed = true;
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }*/
 			};
 		} catch (IOException e) {
 			throw new RuntimeException(e);

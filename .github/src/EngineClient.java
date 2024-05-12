@@ -47,7 +47,7 @@ public class EngineClient implements DataAPI {
     public Iterable<Integer> read(InputConfig input) {
 
         //TODO: If the User provided a list it will not work for this "(FileInputConfig)input).getFileName())" logic
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).build();
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).setDelimiter(((FileInputConfig) input).getDelimiter() + "").build();
 
         UserProto.List response = blockingStub.read(inputConfig);
         return response.getResultsList();
