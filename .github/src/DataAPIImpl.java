@@ -26,6 +26,7 @@ public class DataAPIImpl implements DataAPI  {
                         int i = it.next();
                         System.out.print(i + " ");
                     }
+
 					return list;
 
 				}

@@ -44,8 +44,7 @@ public class EngineManager implements ComputeAPI {
 //		});
 
 		/*REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE*/
-		for (int val : integers) {
-
+		for(int val : integers) {
 			if(first) {
 				gcd = val;
 				first = false;
@@ -53,13 +52,18 @@ public class EngineManager implements ComputeAPI {
 				gcd = ec.getGCD(gcd, val);
 				System.out.println("getGCD called");
 			}
-			System.out.println("Current GCD: " + gcd);
+		}
+		List<Integer> list = new ArrayList<>();
+		integers.forEach(list::add); // Convert the iterable to a list
+
+		list.add(gcd); // Add the integer to the list
+
+		integers = list;
+		//append GCD last
+		for(int val : integers) {
+
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());
 		}
-
-		//append GCD last
-		ds.appendSingleResult(request.getOutputConfig(), ec.compute(gcd)+"", request.getDelimeter());
-
 		return ComputeResult.SUCCESS;
 	}
 
