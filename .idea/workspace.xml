@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.github/files/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.github/files/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/DataAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataAPIServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/DataServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/DataServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/EngineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/src/EngineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/EngineServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/EngineServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/userProto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/userProto.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,42 +60,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DataServer.executor&quot;: &quot;Run&quot;,
-    &quot;Attach to process.pid 15512.executor&quot;: &quot;ProcessAttachDebug&quot;,
-    &quot;Attach to process.pid 4540.executor&quot;: &quot;ProcessAttachDebug&quot;,
-    &quot;Gradle.BenchmarkTest.engineComputeTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.BenchmarkTest.engineManagerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Software-Engineering-Project.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ComputeAPISmokeTest.smokeTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Software-Engineering-Project [:DataServer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Software-Engineering-Project [:EngineServer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Software-Engineering-Project [:UserClient.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'gradle-8.6.test'.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;GUIFixes&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DataServer.executor": "Run",
+    "Application.EngineServer.executor": "Run",
+    "Application.UserClient.executor": "Run",
+    "Attach to process.pid 15512.executor": "ProcessAttachDebug",
+    "Attach to process.pid 4540.executor": "ProcessAttachDebug",
+    "Gradle.BenchmarkTest.engineComputeTest.executor": "Run",
+    "Gradle.BenchmarkTest.engineManagerTest.executor": "Run",
+    "Gradle.Build Software-Engineering-Project.executor": "Run",
+    "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
+    "Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor": "Run",
+    "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
+    "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
+    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Run",
+    "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "GUIFixes",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jorda\OneDrive\Documents\GitHub\Software-Engineering-Project\.github\files" />
       <recent name="C:\Users\jorda\OneDrive\Documents\GitHub\Software-Engineering-Project\.github\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EngineServer">
+  <component name="RunManager" selected="Application.UserClient">
     <configuration name="DataServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataServer" />
       <module name="gradle-8.6.main" />
@@ -182,9 +176,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DataServer" />
-        <item itemvalue="Application.EngineServer" />
         <item itemvalue="Application.UserClient" />
+        <item itemvalue="Application.EngineServer" />
+        <item itemvalue="Application.DataServer" />
         <item itemvalue="Gradle.BenchmarkTest.engineManagerTest" />
         <item itemvalue="Gradle.BenchmarkTest.engineComputeTest" />
       </list>
@@ -217,6 +211,8 @@
       <workItem from="1715523248708" duration="4967000" />
       <workItem from="1715529813554" duration="6943000" />
       <workItem from="1715540812347" duration="3975000" />
+      <workItem from="1715545092497" duration="294000" />
+      <workItem from="1715545415532" duration="545000" />
     </task>
     <servers />
   </component>
@@ -269,7 +265,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/.github/src/EngineClient.java</url>
-          <line>52</line>
+          <line>53</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -279,7 +275,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/.github/src/DataAPIServerImpl.java</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
