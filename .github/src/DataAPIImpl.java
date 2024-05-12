@@ -13,13 +13,12 @@ public class DataAPIImpl implements DataAPI  {
     public Iterable<Integer> read(InputConfig input) {
 		// Use the visitor pattern so that we can easily and safely add additional config types in the future
 		return InputConfig.visitInputConfig(input, fileConfig -> {
-			System.out.println( fileConfig.getDelimiter() + " " + "name:"+ fileConfig.getFileName());
 
 			// Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
 			return new Iterable<Integer>() {
 				@Override
 				public Iterator<Integer> iterator() {
-					System.out.println( fileConfig.getDelimiter() + " " + "name:"+ fileConfig.getFileName());
+
 					return getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
 
 				}
@@ -31,25 +30,35 @@ public class DataAPIImpl implements DataAPI  {
 		try {
 			return new Iterator<Integer>() {
 
+				final char RETURN = '\r';
+				final char NEWLINE = '\n';
+
 				BufferedReader buff = new BufferedReader(new FileReader(fileName));
 				int nextInt = -1;
 				boolean closed = false;
 
 
 				private boolean readNextInt() throws IOException {
-					System.out.println("read:" + buff.read());
-					System.out.println("read:" + buff.read());
+
 					StringBuilder sb = new StringBuilder();
 					int nextChar;
 
 					while ((nextChar = buff.read()) != -1) {
-						if ((char) nextChar == delimiter || (char) nextChar == ' ') {
+						System.out.println(nextChar==delimiter);
+						System.out.println("Next char: " + nextChar);
+						if ((char) nextChar == RETURN || (char)nextChar == NEWLINE ) {
+							continue; // Skip over carriage return
+						}
+						if ((char) nextChar == delimiter) {
 							if (!sb.isEmpty()) {
 								nextInt = Integer.parseInt(sb.toString());
+								System.out.println( "nextInt" + nextInt);
 								return true;
 							}
 						} else if (Character.isDigit(nextChar)) {
 							sb.append((char) nextChar);
+							System.out.println( "isDigit:" + Integer.parseInt(sb.toString()));
+
 						} else {
 
 							throw new RuntimeException("Invalid character in file: " + (char) nextChar);
@@ -58,6 +67,7 @@ public class DataAPIImpl implements DataAPI  {
 					}
 					if (!sb.isEmpty()) {
 						nextInt = Integer.parseInt(sb.toString());
+						System.out.println( "nextInt" + nextInt);
 						return true;
 					}
 					return false;
@@ -72,6 +82,9 @@ public class DataAPIImpl implements DataAPI  {
 
 				@Override
 				public Integer next() {
+					if (closed) {
+						return -1; // Indicates end of iterator
+					}
 					int result = nextInt;
 					try {
 						if (!readNextInt()) {
@@ -89,16 +102,6 @@ public class DataAPIImpl implements DataAPI  {
 					return nextInt != -1;
 				}
 
-            /*public void finalize() {
-                if (!closed) {
-                    try {
-                        buff.close();
-                        closed = true;
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }*/
 			};
 		} catch (IOException e) {
 			throw new RuntimeException(e);

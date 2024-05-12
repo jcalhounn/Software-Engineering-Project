@@ -44,20 +44,11 @@ public class UserClient extends JFrame {
 
         UserProto.ComputeResult response;
 
-        try {
 
-            response = blockingStub.compute(request);
+        response = blockingStub.compute(request);
+        System.out.println("Compute Success!"); //+ response.getOrderNumber());
 
-        } catch (StatusRuntimeException e) {
-            e.printStackTrace();
-            System.out.println("Program error");
-            return;
-        }
-        if (response==null) {
-            System.err.println("Failure Response"); //+ response.getErrorMessage());
-        } else {
-            System.out.println("Compute Success!"); //+ response.getOrderNumber());
-        }
+
     }
 
 
@@ -148,16 +139,26 @@ public class UserClient extends JFrame {
             } else if(!isValidOutputFile(outputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid OUTPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                currentState = State.COMPLETE_MENU;
-                outputFile = outputFileName;
-                inputFile = inputFileName;
-                delimiter = delim.charAt(0);
+                try {
 
-                updateVisibility();
-                addCompleteScreen();
+                    outputFile = outputFileName;
+                    inputFile = inputFileName;
+                    delimiter = delim.charAt(0);
 
-                request();
-                latch.countDown(); // allow shutdown
+                    request();
+                    currentState = State.COMPLETE_MENU;
+                    updateVisibility();
+                    addCompleteScreen();
+
+
+                    latch.countDown(); // allow shutdown
+                }
+                catch(StatusRuntimeException ex)
+                {
+                    JOptionPane.showMessageDialog(UserClient.this, "Invalid File Contents. Please check contents and try again", "Error", JOptionPane.ERROR_MESSAGE);
+                    updateVisibility();
+                    addFileStart();
+                }
             }
         });
     }
@@ -278,6 +279,7 @@ public class UserClient extends JFrame {
         //clear text fields
         inputFileField.setText("");
         delimField.setText("");
+        outputFileField.setText("");
 
         // Remove all existing components from the frame
         removeComponents();
