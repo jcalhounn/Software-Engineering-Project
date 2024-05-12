@@ -6,14 +6,15 @@ service ComputeAPI{
 service DataAPI{
 
   rpc appendSingleResult (OutputConfig) returns (DataWriteResult){}
-  rpc read (InputConfig) returns (List){}//Change data return type to a Page rather than an Iterable<Integer>
+  rpc read (InputConfig) returns (){}//Change data return type to a Page rather than an Iterable<Integer>
 }
 
 message List{
-  //have engine manager loop through pages
-  repeated int32 results=1;//EX: 100 at a time
-//  optional int32 currentPage=2;
+  repeated int32 results=1;
+
 }
+
+
 
 //message ComputeRequest
 message ComputeRequest{
@@ -39,7 +40,7 @@ message InputConfig{
    optional string FileName=1;
    repeated int32 list=2;
    optional string delimiter =3;
-   optional int32 singleData=4;
+   repeated int32 singleData=4;
 }
 
 message OutputConfig{

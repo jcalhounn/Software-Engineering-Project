@@ -34,8 +34,8 @@ public class DataAPIServerImpl extends DataAPIGrpc.DataAPIImplBase {
         //TODO: Convert UserProto.InputConfig to InputConfig and return using stream observer on completed *Reference the ComputeAPIServerImpl
         FileInputConfig inputConfig = new FileInputConfig(request.getFileName(),request.getDelimiter().charAt(0));
         Iterable<Integer> list = dataAPI.read(inputConfig);
-
         UserProto.List results = UserProto.List.newBuilder().addAllResults(list).build();
+
 
         responseObserver.onNext(results);
         responseObserver.onCompleted();

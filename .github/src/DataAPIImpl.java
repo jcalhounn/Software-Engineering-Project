@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 //done
 
@@ -18,95 +20,71 @@ public class DataAPIImpl implements DataAPI  {
 			return new Iterable<Integer>() {
 				@Override
 				public Iterator<Integer> iterator() {
+					Iterator<Integer> list = getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
 
-					return getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
+                    for (Iterator<Integer> it = list; it.hasNext(); ) {
+                        int i = it.next();
+                        System.out.print(i + " ");
+                    }
+					return list;
 
 				}
 			};
 		});
     }
 
-    private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
+	private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
 		try {
+			BufferedReader buff = new BufferedReader(new FileReader(fileName));
+
 			return new Iterator<Integer>() {
-
-				final char RETURN = '\r';
-				final char NEWLINE = '\n';
-
-				BufferedReader buff = new BufferedReader(new FileReader(fileName));
+				String line;
+				StringTokenizer tokenizer;
 				int nextInt = -1;
-				boolean closed = false;
-
 
 				private boolean readNextInt() throws IOException {
-
-					StringBuilder sb = new StringBuilder();
-					int nextChar;
-
-					while ((nextChar = buff.read()) != -1) {
-						System.out.println(nextChar==delimiter);
-						System.out.println("Next char: " + nextChar);
-						if ((char) nextChar == RETURN || (char)nextChar == NEWLINE ) {
-							continue; // Skip over carriage return
+					while ((line = buff.readLine()) != null) {
+						tokenizer = new StringTokenizer(line, String.valueOf(delimiter));
+						if (tokenizer.hasMoreTokens()) {
+							nextInt = Integer.parseInt(tokenizer.nextToken().trim());
+							return true;
 						}
-						if ((char) nextChar == delimiter) {
-							if (!sb.isEmpty()) {
-								nextInt = Integer.parseInt(sb.toString());
-								System.out.println( "nextInt" + nextInt);
-								return true;
-							}
-						} else if (Character.isDigit(nextChar)) {
-							sb.append((char) nextChar);
-							System.out.println( "isDigit:" + Integer.parseInt(sb.toString()));
-
-						} else {
-
-							throw new RuntimeException("Invalid character in file: " + (char) nextChar);
-						}
-
-					}
-					if (!sb.isEmpty()) {
-						nextInt = Integer.parseInt(sb.toString());
-						System.out.println( "nextInt" + nextInt);
-						return true;
 					}
 					return false;
 				}
 
 				{
-					if (!readNextInt()) {
-						buff.close();
-						closed = true;
+					readNextInt();
+				}
+
+				@Override
+				public boolean hasNext() {
+					if (nextInt != -1) {
+						return true;
+					} else {
+						try {
+							return readNextInt();
+						} catch (IOException e) {
+							throw new RuntimeException(e);
+						}
 					}
 				}
 
 				@Override
 				public Integer next() {
-					if (closed) {
-						return -1; // Indicates end of iterator
+					if (!hasNext()) {
+						throw new NoSuchElementException();
 					}
 					int result = nextInt;
-					try {
-						if (!readNextInt()) {
-							buff.close();
-							closed = true;
-						}
-					} catch (IOException e) {
-						throw new RuntimeException(e);
-					}
+					nextInt = -1;
 					return result;
 				}
-
-				@Override
-				public boolean hasNext() {
-					return nextInt != -1;
-				}
-
 			};
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 	@Override
 	public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {

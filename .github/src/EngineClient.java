@@ -3,6 +3,8 @@ import io.grpc.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.Channel;
@@ -48,72 +50,74 @@ public class EngineClient implements DataAPI {
 
         //TODO: If the User provided a list it will not work for this "(FileInputConfig)input).getFileName())" logic
         UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(((FileInputConfig) input).getFileName()).setDelimiter(((FileInputConfig) input).getDelimiter() + "").build();
-
         UserProto.List response = blockingStub.read(inputConfig);
-        return response.getResultsList();
 
-        /* Use the visitor pattern so that we can easily and safely add additional config types in the future
+        // Use the visitor pattern so that we can easily and safely add additional config types in the future
         return InputConfig.visitInputConfig(input, fileConfig -> {
 
             // Iterables are more convenient for method callers than iterators, so wrap our file-based iterator before returning
             return new Iterable<Integer>() {
                 @Override
                 public Iterator<Integer> iterator() {
-                    return getFileBasedIterator(fileConfig.getFileName());
+                    return getFileBasedIterator(fileConfig.getFileName(), fileConfig.getDelimiter());
                 }
             };
-        });*/
+        });
+
     }
 
-
-    private Iterator<Integer> getFileBasedIterator(String fileName) {
+    private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
         try {
+            BufferedReader buff = new BufferedReader(new FileReader(fileName));
+
             return new Iterator<Integer>() {
-                // A Scanner is also fine to use, but has an important difference as we add threads:
-                // BufferedReader is by default thread-safe, but Scanner is not (like a synchronizedList vs ArrayList)
-                // BufferedReader is also slightly more efficient at large file reads (larger buffer than Scanner),
-                // but by default breaks at newlines rather than all whitespace, and doesn't parse the
-                // input as it goes
-                BufferedReader buff = new BufferedReader(new FileReader(fileName));
-                String line = buff.readLine(); // read the first line so that hasNext() correctly recognizes empty files as empty
-                boolean closed = false;
+                String line;
+                StringTokenizer tokenizer;
+                int nextInt = -1;
 
-                @Override
-                public Integer next() {
-                    // this particular iterator reads the first line during the (implicit) constructor, so line is already
-                    // set up for the next integer
-                    int result = Integer.parseInt(line);
-                    try {
-                        line = buff.readLine();
-                        if (!hasNext()) {
-                            buff.close();
-                            closed = true;
+                private boolean readNextInt() throws IOException {
+                    while ((line = buff.readLine()) != null) {
+                        tokenizer = new StringTokenizer(line, String.valueOf(delimiter));
+                        if (tokenizer.hasMoreTokens()) {
+                            nextInt = Integer.parseInt(tokenizer.nextToken().trim());
+                            return true;
                         }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
+                    return false;
+                }
 
-                    return result;
+                {
+                    readNextInt();
                 }
 
                 @Override
                 public boolean hasNext() {
-                    return line != null;
+                    if (nextInt != -1) {
+                        return true;
+                    } else {
+                        try {
+                            return readNextInt();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
 
-                /*
-                 * finalize() is a method on Object, much like toString or equals. It's called when an object is garbage collected, and is used as
-                 * a final cleanup step for resources. It's a bit fragile - it isn't guaranteed to always be called, or be called at any specific time -
-                 * but unless a cleanup is particularly critical, it's generally sufficient as a back-stop against weird circumstances. In this case,
-                 * we would at worst leak a read-lock file handle, which is NBD and certainly not worth architecting a larger solution around (honestly,
-                 * finalize() might even be overkill in this situation).
-                 */
-
+                @Override
+                public Integer next() {
+                    if (!hasNext()) {
+                        throw new NoSuchElementException();
+                    }
+                    int result = nextInt;
+                    nextInt = -1;
+                    return result;
+                }
             };
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     private void writeToFile(String fileName, String line) {
         // use try-with-resources syntax to automatically close the file writer

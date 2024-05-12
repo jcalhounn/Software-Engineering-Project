@@ -18,7 +18,7 @@ public class DataServer {
 
         private void start() throws IOException {
             /* The port on which the server should run */
-            int port = 50053;
+            int port = 50052;
 
 
             server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())

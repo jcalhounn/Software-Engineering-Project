@@ -23,7 +23,8 @@ public class EngineManager implements ComputeAPI {
 
     DataAPI ds;
 	EngineAPI ec;
-	
+	private String gcdFinal;
+
 	public EngineManager(DataAPI ds, EngineAPI ec) {
 		this.ds = ds;
 		this.ec = ec;
@@ -43,22 +44,23 @@ public class EngineManager implements ComputeAPI {
 //			dataIntegers.add(Integer);
 //		});
 
-		/****REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE****/
-
+		/*REPLACED ABOVE WITH THIS, not having the extra loop allows for better CPU USAGE*/
 		for (int val : integers) {
 
 			if(first) {
 				gcd = val;
 				first = false;
 			} else {
-				gcd = ec.getGCD(gcd, val);
+				gcdFinal = ec.compute(ec.getGCD(gcd, val));
+				gcd=ec.getGCD(gcd,val);
+				System.out.println("getGCD called");
 			}
-
+			System.out.println("Current GCD: " + gcd);
 			ds.appendSingleResult(request.getOutputConfig(), ec.compute(val), request.getDelimeter());
 		}
 
-		//append GCD last 
-		ds.appendSingleResult(request.getOutputConfig(), ec.compute(gcd), request.getDelimeter());
+		//append GCD last
+		ds.appendSingleResult(request.getOutputConfig(), gcdFinal, request.getDelimeter());
 
 		return ComputeResult.SUCCESS;
 	}
