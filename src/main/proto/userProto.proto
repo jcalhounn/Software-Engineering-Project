@@ -6,12 +6,11 @@ service ComputeAPI{
 service DataAPI{
 
   rpc appendSingleResult (OutputConfig) returns (DataWriteResult){}
-  rpc read (InputConfig) returns (){}//Change data return type to a Page rather than an Iterable<Integer>
+  rpc read (InputConfig) returns (List){}//Change data return type to a Page rather than an Iterable<Integer>
 }
 
 message List{
   repeated int32 results=1;
-
 }
 
 
@@ -32,7 +31,6 @@ message ComputeResult{
     SUCCESS = 1;
     FAILURE = 2;
     NOT_AN_INTEGER = 3;
-
   }
 }
 
