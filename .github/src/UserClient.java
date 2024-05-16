@@ -152,9 +152,7 @@ public class UserClient extends JFrame {
 
 
                     latch.countDown(); // allow shutdown
-                }
-                catch(StatusRuntimeException ex)
-                {
+                }catch(StatusRuntimeException ex) {
                     JOptionPane.showMessageDialog(UserClient.this, "Invalid File Contents. Please check contents and try again", "Error", JOptionPane.ERROR_MESSAGE);
                     updateVisibility();
                     addFileStart();

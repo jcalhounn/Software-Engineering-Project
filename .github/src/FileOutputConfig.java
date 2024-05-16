@@ -10,9 +10,12 @@ public class FileOutputConfig implements OutputConfig {
 	}
 
 	public String getFileName() {
+
 		return fileName;
 	}
 
-	public char getDelimiter() { return delimiter; }
+	public char getDelimiter() {
+		return delimiter;
+	}
 }
 //done
