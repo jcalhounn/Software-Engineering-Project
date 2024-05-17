@@ -93,8 +93,7 @@ public class DataAPIImpl implements DataAPI  {
 			if(delimiter=='\\'){
 				writeToFile(config.getFileName(),result);
 				writeToFile(config.getFileName(),'\n'+"");
-			}
-			else {
+			} else {
 				writeToFile(config.getFileName(), result + delimiter);
 			}
 		});
@@ -113,8 +112,7 @@ public class DataAPIImpl implements DataAPI  {
 			if(line.equals("\\n")){
 				writer.write("\r\n");
 				writer.append(line);
-			}
-			else {
+			} else {
 				writer.append(line);
 			}
 		} catch (IOException e) {
