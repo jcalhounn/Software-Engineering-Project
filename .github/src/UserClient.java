@@ -73,7 +73,7 @@ public class UserClient extends JFrame {
 
         inputFilePrompt  = new JLabel("Input File Name (\".github/files/\")  : ");
         outputFilePrompt = new JLabel("Output File Name (\".github/files/\") : ");
-        delimPrompt = new JLabel(   "Delimiter                                                        : ");
+        delimPrompt = new JLabel(   "Delimiter('\\n for new line'            : ");
         welcomeMessage = new JLabel("Welcome to Our Computation Machine");
         completedMessage = new JLabel("Completed Computation Location: ");
         errorMessage = new JLabel("ERROR: Invalid Input");
@@ -347,7 +347,8 @@ public class UserClient extends JFrame {
     }
 
     private boolean isValidDelimiter(String delimiter) {
-        boolean valid = delimiter.length() == 1 && !Character.isDigit(delimiter.charAt(0));
+
+        boolean valid = ((delimiter.length() == 1 && !Character.isDigit(delimiter.charAt(0))) || delimiter.equals("\\n"));
         System.out.println(valid);
         return valid;
     }

@@ -66,40 +66,27 @@ public class EngineClient implements DataAPI {
 
     }
 
-    private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
+    private static Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
         try {
             BufferedReader buff = new BufferedReader(new FileReader(fileName));
 
             return new Iterator<Integer>() {
-                String line;
                 StringTokenizer tokenizer;
-                int nextInt = -1;
+                String nextLine;
 
-                private boolean readNextInt() throws IOException {
-                    while ((line = buff.readLine()) != null) {
-                        tokenizer = new StringTokenizer(line, String.valueOf(delimiter));
-                        if (tokenizer.hasMoreTokens()) {
-                            nextInt = Integer.parseInt(tokenizer.nextToken().trim());
-                            return true;
-                        }
+                private boolean prepareNextToken() throws IOException {
+                    while ((tokenizer == null || !tokenizer.hasMoreTokens()) && (nextLine = buff.readLine()) != null) {
+                        tokenizer = new StringTokenizer(nextLine, String.valueOf(delimiter));
                     }
-                    return false;
-                }
-
-                {
-                    readNextInt();
+                    return tokenizer != null && tokenizer.hasMoreTokens();
                 }
 
                 @Override
                 public boolean hasNext() {
-                    if (nextInt != -1) {
-                        return true;
-                    } else {
-                        try {
-                            return readNextInt();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                    try {
+                        return prepareNextToken();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
 
@@ -108,9 +95,7 @@ public class EngineClient implements DataAPI {
                     if (!hasNext()) {
                         throw new NoSuchElementException();
                     }
-                    int result = nextInt;
-                    nextInt = -1;
-                    return result;
+                    return Integer.parseInt(tokenizer.nextToken().trim());
                 }
             };
         } catch (IOException e) {
@@ -119,11 +104,71 @@ public class EngineClient implements DataAPI {
     }
 
 
+//    private Iterator<Integer> getFileBasedIterator(String fileName, char delimiter) {
+//        try {
+//            BufferedReader buff = new BufferedReader(new FileReader(fileName));
+//
+//            return new Iterator<Integer>() {
+//                String line;
+//                StringTokenizer tokenizer;
+//                int nextInt = -1;
+//
+//                private boolean readNextInt() throws IOException {
+//                    while ((line = buff.readLine()) != null) {
+//                        tokenizer = new StringTokenizer(line, String.valueOf(delimiter));
+//                        if (tokenizer.hasMoreTokens()) {
+//                            nextInt = Integer.parseInt(tokenizer.nextToken().trim());
+//                            return true;
+//                        }
+//                    }
+//                    return false;
+//                }
+//
+//                {
+//                    readNextInt();
+//                }
+//
+//                @Override
+//                public boolean hasNext() {
+//                    if (nextInt != -1) {
+//                        return true;
+//                    } else {
+//                        try {
+//                            return readNextInt();
+//                        } catch (IOException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public Integer next() {
+//                    if (!hasNext()) {
+//                        throw new NoSuchElementException();
+//                    }
+//                    int result = nextInt;
+//                    nextInt = -1;
+//                    return result;
+//                }
+//            };
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+
     private void writeToFile(String fileName, String line) {
         // use try-with-resources syntax to automatically close the file writer
         // use the append-friendly version of the constructor
+
         try (FileWriter writer = new FileWriter(new File(fileName), true)) {
-            writer.append(line);
+            if(line.equals("\\n")){
+                writer.write("\r\n");
+                writer.append(line);
+            }
+            else {
+                writer.append(line);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -131,7 +176,13 @@ public class EngineClient implements DataAPI {
 
     public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
         OutputConfig.visitOutputConfig(output, config -> {
-            writeToFile(config.getFileName(), result + delimiter);
+            if(delimiter=='\\'){
+                writeToFile(config.getFileName(),result);
+                writeToFile(config.getFileName(),'\n'+"");
+            }
+            else {
+                writeToFile(config.getFileName(), result + delimiter);
+            }
         });
 
         /*

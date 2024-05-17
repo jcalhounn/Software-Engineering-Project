@@ -90,24 +90,37 @@ public class DataAPIImpl implements DataAPI  {
 	@Override
 	public DataWriteResult appendSingleResult(OutputConfig output, String result, char delimiter) {
 		OutputConfig.visitOutputConfig(output, config -> {
-			writeToFile(config.getFileName(), result + delimiter);
+			if(delimiter=='\\'){
+				writeToFile(config.getFileName(),result);
+				writeToFile(config.getFileName(),'\n'+"");
+			}
+			else {
+				writeToFile(config.getFileName(), result + delimiter);
+			}
 		});
-		
-		/* 
+
+		/*
 		 * Using lambda syntax to create an instance of WriteResult. This is an alternative to the ComputeResult approach of providing
 		 * constants for success/failure.
 		 */
-		return () -> DataWriteResult.WriteResultStatus.SUCCESS; 
+		return () -> DataWriteResult.WriteResultStatus.SUCCESS;
 	}
-
 	private void writeToFile(String fileName, String line) {
 		// use try-with-resources syntax to automatically close the file writer
 		// use the append-friendly version of the constructor
+
 		try (FileWriter writer = new FileWriter(new File(fileName), true)) {
-			writer.append(line);
+			if(line.equals("\\n")){
+				writer.write("\r\n");
+				writer.append(line);
+			}
+			else {
+				writer.append(line);
+			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 }
