@@ -10,10 +10,10 @@ service DataAPI{
 }
 
 message List{
-  //have engine manager loop through pages
-  repeated int32 results=1;//EX: 100 at a time
-//  optional int32 currentPage=2;
+  repeated int32 results=1;
 }
+
+
 
 //message ComputeRequest
 message ComputeRequest{
@@ -31,14 +31,14 @@ message ComputeResult{
     SUCCESS = 1;
     FAILURE = 2;
     NOT_AN_INTEGER = 3;
-
   }
 }
 
 message InputConfig{
    optional string FileName=1;
    repeated int32 list=2;
-   optional int32 singleData=3;
+   optional string delimiter =3;
+   repeated int32 singleData=4;
 }
 
 message OutputConfig{

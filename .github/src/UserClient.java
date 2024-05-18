@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.io.File;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.Channel;
@@ -8,7 +9,6 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
-
 
 import javax.swing.*;
 
@@ -20,8 +20,8 @@ public class UserClient extends JFrame {
     private enum State {
         START_MENU, FILE_MENU, COMPLETE_MENU, ERROR_MENU
     }
-    private final ComputeAPIGrpc.ComputeAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
+    private final ComputeAPIGrpc.ComputeAPIBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
 
     private UserClient.State currentState;
     private final JButton startButton, exitButton, delimButton, againButton, backButton, completeButton;
@@ -33,54 +33,29 @@ public class UserClient extends JFrame {
     private String outputFile;
     private char delimiter;
 
-
-    //Explaination 2
-    //We need to send our code across the network and this process is buffered by a protocol file
-    //this means that the data types that our project expects to see is defined in the proto file
-    //To send our actual request through the compute method, the proto is structured in a way that
-    //states what data type will be expected as a parameter and as the return type
-    //The blockingStub.compute(request) is an rpc service defined in the proto, so it needs proto parameters
-    //these parameters are set through the initialization of inputConfig,and outputConfig, and explicitly for delimiter
-    //this proto readable request is then sent across the channel to the EngineServer
-    //Continued on EngineServer
+    private CountDownLatch latch;
 
     public void request() {
 
-        //TODO: user fills out input output configs and delimiter attached through GUI
-
-
-        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(inputFile).build();
-        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(outputFile).build();
-        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter + "").build();
+        UserProto.InputConfig inputConfig = UserProto.InputConfig.newBuilder().setFileName(".github/files/" + inputFile).build();
+        UserProto.OutputConfig outputConfig = UserProto.OutputConfig.newBuilder().setFileName(".github/files/" + outputFile).build();
+        UserProto.ComputeRequest request = UserProto.ComputeRequest.newBuilder().setInput(inputConfig).setOutput(outputConfig).setDelimiter(delimiter+"").build();
 
         UserProto.ComputeResult response;
-        try {
-            response = blockingStub.compute(request);
-        } catch (StatusRuntimeException e) {
-            e.printStackTrace();
-            return;
-        }
-        if (response==null) {
-            System.err.println("Failure Response"); //+ response.getErrorMessage());
-        } else {
-            System.out.println("Compute Success!"); //+ response.getOrderNumber());
-        }
+
+
+        response = blockingStub.compute(request);
+        System.out.println("Compute Success!"); //+ response.getOrderNumber());
+
+
     }
 
 
-    //EXPLANATION 1
-    //UserClient wants to make a compute request across a "network"
-    //To do this, we host a server on "EngineServer"
-    //To connect to this server we use the target address "localhost:50051" that matches up to the port declared in EngineSerer
-    //The channel is then built between the client and server.
-    //we then call the request method on our UserClient object
-    //Continued above.
-
-
-
-
-    public UserClient(Channel channel) {
+    public UserClient(Channel channel, CountDownLatch latch) {
         super("Computation");
+
+        this.latch = latch;
+
         blockingStub = ComputeAPIGrpc.newBlockingStub(channel);  // Boilerplate TODO: update to appropriate blocking stub
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +73,7 @@ public class UserClient extends JFrame {
 
         inputFilePrompt  = new JLabel("Input File Name (\".github/files/\")  : ");
         outputFilePrompt = new JLabel("Output File Name (\".github/files/\") : ");
-        delimPrompt = new JLabel(   "Delimiter                                                        : ");
+        delimPrompt = new JLabel(   "Delimiter('\\n for new line'            : ");
         welcomeMessage = new JLabel("Welcome to Our Computation Machine");
         completedMessage = new JLabel("Completed Computation Location: ");
         errorMessage = new JLabel("ERROR: Invalid Input");
@@ -154,6 +129,7 @@ public class UserClient extends JFrame {
             String outputFileName = outputFileField.getText().trim();
             String delim = delimField.getText().trim();
 
+
             // Check for Errors
             if (!isValidInputFile(inputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid INPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -162,13 +138,24 @@ public class UserClient extends JFrame {
             } else if(!isValidOutputFile(outputFileName)) {
                 JOptionPane.showMessageDialog(UserClient.this, "Invalid OUTPUT file name or file does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                currentState = State.COMPLETE_MENU;
-                outputFile = outputFileName;
-                inputFile = inputFileName;
-                delimiter = delim.charAt(0);
-                updateVisibility();
-                addCompleteScreen();
-                this.request();
+                try {
+
+                    outputFile = outputFileName;
+                    inputFile = inputFileName;
+                    delimiter = delim.charAt(0);
+
+                    request();
+                    currentState = State.COMPLETE_MENU;
+                    updateVisibility();
+                    addCompleteScreen();
+
+
+                    latch.countDown(); // allow shutdown
+                }catch(StatusRuntimeException ex) {
+                    JOptionPane.showMessageDialog(UserClient.this, "Invalid File Contents. Please check contents and try again", "Error", JOptionPane.ERROR_MESSAGE);
+                    updateVisibility();
+                    addFileStart();
+                }
             }
         });
     }
@@ -289,6 +276,7 @@ public class UserClient extends JFrame {
         //clear text fields
         inputFileField.setText("");
         delimField.setText("");
+        outputFileField.setText("");
 
         // Remove all existing components from the frame
         removeComponents();
@@ -359,27 +347,27 @@ public class UserClient extends JFrame {
     }
 
     private boolean isValidDelimiter(String delimiter) {
-        boolean valid = delimiter.length() == 1 && !Character.isDigit(delimiter.charAt(0));
+
+        boolean valid = ((delimiter.length() == 1 && !Character.isDigit(delimiter.charAt(0))) || delimiter.equals("\\n"));
         System.out.println(valid);
         return valid;
     }
 
 
-
     public static void main(String[] args) throws Exception {
 
 
-        String target = "localhost:50054";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
+            CountDownLatch latch = new CountDownLatch(1);
 
-
-            UserClient client = new UserClient(channel);
+            UserClient client = new UserClient(channel, latch);
             client.setVisible(true);
 
-            //client.request();
+            latch.await(); //prevents shut down until grcp is called
 
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);

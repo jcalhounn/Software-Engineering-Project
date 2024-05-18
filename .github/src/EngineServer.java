@@ -21,10 +21,10 @@ public class EngineServer { // Boilerplate TODO: Change name of class
 
     private void start() throws IOException {
         /* The port on which the server should run */
-        int port = 50054; // Boilerplate TODO: Consider changing the port (only one server per port)
+        int port = 50051; // Boilerplate TODO: Consider changing the port (only one server per port)
 
         //EngineManager object
-        String target = "localhost:50053";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+        String target = "localhost:50052";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
 
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();

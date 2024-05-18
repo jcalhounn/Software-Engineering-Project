@@ -13,12 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 
 public class DataServer {
-        // Boilerplate TODO: Change name of class
+
         private Server server;
 
         private void start() throws IOException {
             /* The port on which the server should run */
-            int port = 50053; // Boilerplate TODO: Consider changing the port (only one server per port)
+            int port = 50052;
 
 
             server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
@@ -36,6 +36,7 @@ public class DataServer {
                         if (server != null) {
                             server.shutdown().awaitTermination(30, TimeUnit.SECONDS);
                         }
+
                     } catch (InterruptedException e) {
                         e.printStackTrace(System.err);
                     }
@@ -54,7 +55,7 @@ public class DataServer {
         }
 
         public static void main(String[] args) throws Exception {
-            DataServer server = new DataServer(); // Boilerplate TODO: Change name of class
+            DataServer server = new DataServer();
             server.start();
             server.blockUntilShutdown();
         }

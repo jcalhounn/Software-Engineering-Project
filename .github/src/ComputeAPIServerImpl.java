@@ -1,3 +1,5 @@
+
+
 public class ComputeAPIServerImpl extends ComputeAPIGrpc.ComputeAPIImplBase {
 
     EngineManager engineManager;
@@ -16,6 +18,7 @@ public class ComputeAPIServerImpl extends ComputeAPIGrpc.ComputeAPIImplBase {
                          io.grpc.stub.StreamObserver<UserProto.ComputeResult> responseObserver) {
         //Build EngineManager parameter
         //convert proto request to ComputeRequest
+        System.out.println("Delim:" + request.getDelimiter());
         ComputeRequestImpl computeRequest = new ComputeRequestImpl(request.getInput().getFileName(),request.getDelimiter().charAt(0),request.getOutput().getFileName());
 
         ComputeResult computeResult = engineManager.compute(computeRequest);

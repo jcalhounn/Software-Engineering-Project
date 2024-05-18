@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4d15e1-5d33-467d-8c69-674a5c30ac2c" name="Changes" comment="">
-
-      <change afterPath="$PROJECT_DIR$/.github/files/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/src/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/.github/src/UserClient.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,34 +59,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to process.pid 15512.executor": "ProcessAttachDebug",
-    "Attach to process.pid 4540.executor": "ProcessAttachDebug",
-    "Gradle.BenchmarkTest.engineComputeTest.executor": "Run",
-    "Gradle.BenchmarkTest.engineManagerTest.executor": "Run",
-    "Gradle.ComputeAPISmokeTest.smokeTest.executor": "Run",
-    "Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor": "Run",
-    "Gradle.Software-Engineering-Project [:DataServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:EngineServer.main()].executor": "Run",
-    "Gradle.Software-Engineering-Project [:UserClient.main()].executor": "Run",
-    "Gradle.Tests in 'gradle-8.6.test'.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "GUI",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DataServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EngineServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserClient.executor&quot;: &quot;Run&quot;,
+    &quot;Attach to process.pid 15512.executor&quot;: &quot;ProcessAttachDebug&quot;,
+    &quot;Attach to process.pid 4540.executor&quot;: &quot;ProcessAttachDebug&quot;,
+    &quot;Batch.gradlew.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BenchmarkTest.engineComputeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BenchmarkTest.engineManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Software-Engineering-Project.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ComputeAPISmokeTest.smokeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EngineAPIIntegrationTest.testComputeWorkflow.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Software-Engineering-Project [:DataServer.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Software-Engineering-Project [:EngineServer.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Software-Engineering-Project [:UserClient.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Software-Engineering-Project.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'gradle-8.6.test'.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Shell Script.gradlew.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;GUIFixes&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jorda\OneDrive\Documents\GitHub\Software-Engineering-Project\.github\files" />
@@ -118,70 +121,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
-    <configuration name="BenchmarkTest.engineComputeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;BenchmarkTest.engineComputeTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+    <configuration name="gradlew" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="gradle-8.6" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="gradlew.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gradlew" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/gradlew" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/sh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
       <method v="2" />
     </configuration>
-    <configuration name="BenchmarkTest.engineManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;BenchmarkTest.engineManagerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-
     <list>
+      <item itemvalue="Application.UserClient" />
       <item itemvalue="Application.DataServer" />
       <item itemvalue="Application.EngineServer" />
-      <item itemvalue="Application.UserClient" />
-      <item itemvalue="Gradle.BenchmarkTest.engineComputeTest" />
-      <item itemvalue="Gradle.BenchmarkTest.engineManagerTest" />
+      <item itemvalue="Batch.gradlew" />
+      <item itemvalue="Shell Script.gradlew" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserClient" />
+        <item itemvalue="Shell Script.gradlew" />
         <item itemvalue="Application.EngineServer" />
         <item itemvalue="Application.DataServer" />
-        <item itemvalue="Application.UserClient" />
-        <item itemvalue="Gradle.BenchmarkTest.engineManagerTest" />
-        <item itemvalue="Gradle.BenchmarkTest.engineComputeTest" />
+        <item itemvalue="Batch.gradlew" />
       </list>
     </recent_temporary>
   </component>
@@ -204,9 +183,23 @@
       <workItem from="1712685473436" duration="2399000" />
       <workItem from="1714580833907" duration="351000" />
       <workItem from="1714587647985" duration="4120000" />
-
       <workItem from="1715395517274" duration="3524000" />
-
+      <workItem from="1715399926126" duration="3935000" />
+      <workItem from="1715440326628" duration="7398000" />
+      <workItem from="1715454379676" duration="4579000" />
+      <workItem from="1715472444452" duration="8413000" />
+      <workItem from="1715523248708" duration="4967000" />
+      <workItem from="1715529813554" duration="6943000" />
+      <workItem from="1715540812347" duration="3975000" />
+      <workItem from="1715545092497" duration="294000" />
+      <workItem from="1715545415532" duration="545000" />
+      <workItem from="1715546000276" duration="4428000" />
+      <workItem from="1715625918527" duration="7000" />
+      <workItem from="1715625944777" duration="187000" />
+      <workItem from="1715896891765" duration="3497000" />
+      <workItem from="1715900842877" duration="82000" />
+      <workItem from="1715901756036" duration="9527000" />
+      <workItem from="1715994425930" duration="41000" />
     </task>
     <servers />
   </component>
@@ -227,17 +220,41 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
           <option name="timeStamp" value="8" />
         </breakpoint>
-
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint log-message="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="9" />
         </breakpoint>
-
+        <breakpoint enabled="true" log-message="true" type="java-exception">
+          <properties class="java.lang.NumberFormatException" package="java.lang" />
+          <option name="timeStamp" value="10" />
+        </breakpoint>
+        <breakpoint log-message="true" type="java-exception">
+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="17" />
+        </breakpoint>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="24" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/.github/src/ComputeAPIServerImpl.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/.github/src/FileOutputConfig.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
